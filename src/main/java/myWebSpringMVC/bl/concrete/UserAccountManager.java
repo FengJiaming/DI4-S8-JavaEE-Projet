@@ -30,6 +30,18 @@ public class UserAccountManager {
         this.repo.saveAndFlush(user);
     }
     
+    public boolean isValidLogin(String username, String password){
+        UserAccount userAccount  = getUserByName(username);
+
+        if(userAccount == null)
+            return false;
+        else{
+            if(userAccount.getPassword().equals(password)) {
+                return true;
+            }else
+                return false;
+        }
+    }
     
     
    // public UserAccount getUserInfo

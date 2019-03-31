@@ -5,11 +5,22 @@
  */
 package myWebSpringMVC.service;
 
-import myWebSpringMVC.
+import myWebSpringMVC.domain.model.UserAccount;
+import myWebSpringMVC.bl.concrete.UserAccountManager;
 /**
  *
  * @author FENG
  */
 public class LoginService {
     
+    UserAccountManager uamanager;
+    
+    public boolean login(UserAccount userAccount) {
+
+        if(uamanager.isValidLogin(userAccount.getFirstName(), userAccount.getPassword())){
+            return true;
+            //return "entries";
+        }
+        return false;
+    }
 }
