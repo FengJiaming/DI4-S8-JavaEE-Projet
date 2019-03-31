@@ -5,10 +5,16 @@
  */
 package myWebSpringMVC.service;
 
+import myWebSpringMVC.bl.concrete.UserAccountManager;
+import myWebSpringMVC.domain.model.UserAccount;
 /**
  *
- * @author MSI-PC
+ * @author FENG
  */
 public class RegisterService {
+    UserAccountManager uamanager;
     
+    public void register(UserAccount userAccount){
+        uamanager.setUserAccount(userAccount);
+    }
 }
