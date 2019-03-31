@@ -2,9 +2,9 @@
 package myWebSpringMVC.controllers;
 
 import myWebSpringMVC.bl.concrete.UserAccountManager;
-import myWebSpringMVC.domaine.model.UserAccount;
+import myWebSpringMVC.domain.model.UserAccount;
 import javax.annotation.Resource;
-import myWebSpringMVC.domaine.model.Owner;
+import myWebSpringMVC.domain.model.Owner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

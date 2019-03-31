@@ -1,6 +1,6 @@
 package myWebSpringMVC.bl.concrete;
 
-import myWebSpringMVC.domaine.model.UserAccount;
+import myWebSpringMVC.domain.model.UserAccount;
 import myWebSpringMVC.domain.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

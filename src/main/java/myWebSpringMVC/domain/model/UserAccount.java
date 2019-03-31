@@ -1,4 +1,4 @@
-package myWebSpringMVC.domaine.model;
+package myWebSpringMVC.domain.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
