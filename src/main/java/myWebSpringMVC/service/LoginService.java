@@ -15,6 +15,10 @@ public class LoginService {
     
     UserAccountManager uamanager;
     
+    public LoginService(UserAccountManager uamanager){
+        this.uamanager = uamanager;
+    }
+    
     public boolean login(UserAccount userAccount) {
 
         if(uamanager.isValidLogin(userAccount.getFirstName(), userAccount.getPassword())){

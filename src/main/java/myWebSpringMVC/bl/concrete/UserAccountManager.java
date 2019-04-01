@@ -1,5 +1,6 @@
 package myWebSpringMVC.bl.concrete;
 
+import java.util.List;
 import myWebSpringMVC.domain.model.UserAccount;
 import myWebSpringMVC.domain.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,11 @@ public class UserAccountManager {
         }
     }
     
+    //TO DO get all UserAccount
+    
+    public List<UserAccount> all(){
+        return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+    }
     
    // public UserAccount getUserInfo
     //public UserAccount supprimer()
