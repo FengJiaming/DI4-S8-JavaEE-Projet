@@ -4,12 +4,11 @@ package myWebSpringMVC.controllers;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
 import myWebSpringMVC.domain.model.UserAccount;
 import javax.annotation.Resource;
-<<<<<<< HEAD
+
 import myWebSpringMVC.bl.concrete.StoreManager;
-import myWebSpringMVC.domaine.model.Owner;
-=======
 import myWebSpringMVC.domain.model.Owner;
->>>>>>> feng
+
+import myWebSpringMVC.domain.model.Owner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
