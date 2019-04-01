@@ -32,7 +32,7 @@ public class UserAccountManager {
     }
     
     public boolean isValidLogin(String username, String password){
-        UserAccount userAccount  = getUserByName(username);
+        /*UserAccount userAccount  = getUserByName(username);
 
         if(userAccount == null)
             return false;
@@ -42,13 +42,15 @@ public class UserAccountManager {
                 return true;
             }else
                 return false;
-        }
+        }*/
+        return true;
     }
     
     //TO DO get all UserAccount
     
     public List<UserAccount> all(){
-        return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+        //return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+        return null;
     }
     
    // public UserAccount getUserInfo

@@ -5,11 +5,15 @@
  */
 package myWebSpringMVC.service;
 
-//import myWebSpringMVC.bl.concrete.
+import myWebSpringMVC.bl.concrete.StoreManager;
 /**
  *
  * @author FENG
  */
 public class GetStoreInfoService {
     
+    StoreManager storeManager;
+    public GetStoreInfoService(StoreManager storeManager) {
+        this.storeManager = storeManager;
+    }
 }
