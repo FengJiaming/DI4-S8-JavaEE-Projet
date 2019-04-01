@@ -1,14 +1,18 @@
 package myWebSpringMVC.domaine.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import static javax.persistence.DiscriminatorType.STRING;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -53,7 +57,20 @@ public class UserAccount implements Serializable {
     private String ResetLinkValidateDate;
     @Column(name = "IsRemoved")
     private boolean IsRemoved;
+    
+    //@Column(name = "Address")
+        @OneToMany(
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Address> address;
+  //  private Address Address;
 
+    public UserAccount() {
+        this.address = new ArrayList<>();
+    }
+
+/*
     @Column(name = "Street")
     private String Street;
 
@@ -71,7 +88,7 @@ public class UserAccount implements Serializable {
 
    // @Column(name = "Type")
     //private String Type;
-    
+    */
     public int getID() {
         return ID;
     }
@@ -159,7 +176,7 @@ public class UserAccount implements Serializable {
     public void setIsRemoved(boolean IsRemoved) {
         this.IsRemoved = IsRemoved;
     }
-
+/*
     public String getStreet() {
         return Street;
     }
@@ -199,7 +216,7 @@ public class UserAccount implements Serializable {
     public void setCountry(String Country) {
         this.Country = Country;
     }
-
+*/
 //    public String getType() {
 //        return Type;
 //    }

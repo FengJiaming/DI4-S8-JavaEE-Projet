@@ -6,23 +6,31 @@
 package myWebSpringMVC.domaine.model;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import static javax.persistence.DiscriminatorType.STRING;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  *
  * @author mengqingling
- */
+ */ 
 @Entity
 @Table(name = "Stores")
-public class Store {
+public class Store  implements Serializable {
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
+    
     @Id
     @Column(name = "ID")
     private int ID;
@@ -45,8 +53,17 @@ public class Store {
     @Column(name = "Longitude")
     private double Longitude;   
     
-    @Column( name = "Address")
-    private Address Address;
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Address> address;
+    
+    
+   // @Column( name = "Address")
+    
+   // @OneToOne
+    //private Address Address;
     
     public int getID() {
         return ID;
@@ -104,13 +121,6 @@ public class Store {
         this.Longitude = Longitude;
     }
 
-    public Address getAddress() {
-        return Address;
-    }
-
-    public void setAddress(Address Address) {
-        this.Address = Address;
-    }
     
     
     
