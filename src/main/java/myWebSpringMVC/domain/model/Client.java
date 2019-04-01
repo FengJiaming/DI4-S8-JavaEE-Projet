@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package myWebSpringMVC.domaine.model;
+package myWebSpringMVC.domain.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 //@Table(name = "Owner")
-//@DiscriminatorValue("2")
-public class Administrator extends UserAccount{
-   // private int Id=1;
+//@DiscriminatorValue("3")   
+public class Client extends UserAccount{
+  // private int Id =3;
 }

@@ -1,6 +1,7 @@
 package myWebSpringMVC.bl.concrete;
 
-import myWebSpringMVC.domaine.model.UserAccount;
+import java.util.List;
+import myWebSpringMVC.domain.model.UserAccount;
 import myWebSpringMVC.domain.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,7 +31,24 @@ public class UserAccountManager {
         this.repo.saveAndFlush(user);
     }
     
+    public boolean isValidLogin(String username, String password){
+        UserAccount userAccount  = getUserByName(username);
+
+        if(userAccount == null)
+            return false;
+        else{
+            if(userAccount.getPassword().equals(password)) {
+                return true;
+            }else
+                return false;
+        }
+    }
     
+    //TO DO get all UserAccount
+    
+    public List<UserAccount> all(){
+        return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+    }
     
    // public UserAccount getUserInfo
     //public UserAccount supprimer()
