@@ -2,7 +2,7 @@ package myWebSpringMVC.bl.concrete;
 
 import myWebSpringMVC.domain.repository.AddressRepository;
 
-import myWebSpringMVC.domaine.model.Address;
+import myWebSpringMVC.domain.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
