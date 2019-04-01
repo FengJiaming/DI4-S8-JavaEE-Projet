@@ -5,9 +5,10 @@
  */
 package myWebSpringMVC.service;
 
+//import myWebSpringMVC.bl.concrete.
 /**
  *
- * @author MSI-PC
+ * @author FENG
  */
 public class GetStoreInfoService {
     

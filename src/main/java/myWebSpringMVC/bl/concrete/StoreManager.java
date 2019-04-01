@@ -1,7 +1,7 @@
 package myWebSpringMVC.bl.concrete;
 
 import myWebSpringMVC.domain.repository.StoreRepository;
-import myWebSpringMVC.domaine.model.Store;
+import myWebSpringMVC.domain.model.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

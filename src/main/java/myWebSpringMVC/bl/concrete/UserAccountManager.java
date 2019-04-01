@@ -36,6 +36,7 @@ public class UserAccountManager {
 
         if(userAccount == null)
             return false;
+        
         else{
             if(userAccount.getPassword().equals(password)) {
                 return true;
