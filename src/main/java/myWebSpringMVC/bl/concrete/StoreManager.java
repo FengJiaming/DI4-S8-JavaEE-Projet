@@ -1,5 +1,6 @@
 package myWebSpringMVC.bl.concrete;
 
+import java.util.List;
 import myWebSpringMVC.domain.repository.StoreRepository;
 import myWebSpringMVC.domain.model.Store;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class StoreManager {
     }
     
     
-    
+    public List<Store> all(){
+        return null;
+    }
    // public UserAccount getUserInfo
    //public UserAccount supprimer()
     

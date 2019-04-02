@@ -5,14 +5,17 @@
  */
 package myWebSpringMVC.service;
 
+import javax.inject.Inject;
 import myWebSpringMVC.domain.model.UserAccount;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
 /**
  *
  * @author FENG
  */
+
 public class LoginService {
     
+    @Inject
     UserAccountManager uamanager;
     
     public LoginService(UserAccountManager uamanager){

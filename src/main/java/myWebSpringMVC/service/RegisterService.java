@@ -5,6 +5,7 @@
  */
 package myWebSpringMVC.service;
 
+import javax.inject.Inject;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
 import myWebSpringMVC.domain.model.UserAccount;
 /**
@@ -12,8 +13,12 @@ import myWebSpringMVC.domain.model.UserAccount;
  * @author FENG
  */
 public class RegisterService {
+    @Inject
     UserAccountManager uamanager;
     
+    public RegisterService(UserAccountManager uamanager) {
+        this.uamanager = uamanager;
+    }
     public void register(UserAccount userAccount){
         uamanager.setUserAccount(userAccount);
     }
