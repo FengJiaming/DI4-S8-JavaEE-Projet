@@ -19,7 +19,11 @@ public class RegisterService {
     public RegisterService(UserAccountManager uamanager) {
         this.uamanager = uamanager;
     }
+    
     public void register(UserAccount userAccount){
-        uamanager.setUserAccount(userAccount);
+        if (uamanager.getUserAccountById(userAccount.getID())!=userAccount) {
+            uamanager.setUserAccount(userAccount);
+        }
     }
+    
 }

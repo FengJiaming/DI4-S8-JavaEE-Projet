@@ -8,12 +8,14 @@ package myWebSpringMVC.service;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
 import myWebSpringMVC.domain.model.UserAccount;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  *
  * @author FENG
  */
 public class GetUserInfoService {
+    @Inject
     private UserAccountManager uamanager;
 
     
@@ -25,4 +27,6 @@ public class GetUserInfoService {
     public List<UserAccount> all(){
         return this.uamanager.all();
     }
+    
+    
 }

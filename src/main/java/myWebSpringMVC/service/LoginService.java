@@ -5,9 +5,13 @@
  */
 package myWebSpringMVC.service;
 
+
 import javax.inject.Inject;
 import myWebSpringMVC.domain.model.UserAccount;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 /**
  *
  * @author FENG
@@ -15,6 +19,8 @@ import myWebSpringMVC.bl.concrete.UserAccountManager;
 
 public class LoginService {
     
+    //@Inject
+    private static final Log log = LogFactory.getLog(LoginService.class);
     @Inject
     UserAccountManager uamanager;
     
@@ -23,11 +29,12 @@ public class LoginService {
     }
     
     public boolean login(UserAccount userAccount) {
-
+        log.info("log:login" + userAccount.getFirstName());
         if(uamanager.isValidLogin(userAccount.getFirstName(), userAccount.getPassword())){
             return true;
             //return "entries";
         }
         return false;
+        
     }
 }

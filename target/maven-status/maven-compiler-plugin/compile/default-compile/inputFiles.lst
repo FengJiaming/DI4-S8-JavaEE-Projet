@@ -5,6 +5,7 @@ D:\France\S8\Java\DI4-S8-JavaEE-Projet\src\main\java\myWebSpringMVC\service\Logi
 D:\France\S8\Java\DI4-S8-JavaEE-Projet\src\main\java\myWebSpringMVC\config\AppConfig.java
 D:\France\S8\Java\DI4-S8-JavaEE-Projet\src\main\java\myWebSpringMVC\domain\repository\OwnerRepository.java
 D:\France\S8\Java\DI4-S8-JavaEE-Projet\src\main\java\myWebSpringMVC\domain\repository\StoreRepository.java
+D:\France\S8\Java\DI4-S8-JavaEE-Projet\src\main\java\myWebSpringMVC\service\TestRest.java
 D:\France\S8\Java\DI4-S8-JavaEE-Projet\src\main\java\myWebSpringMVC\bl\concrete\OwnerManager.java
 D:\France\S8\Java\DI4-S8-JavaEE-Projet\src\main\java\myWebSpringMVC\domain\repository\ClientRepository.java
 D:\France\S8\Java\DI4-S8-JavaEE-Projet\src\main\java\myWebSpringMVC\domain\model\Owner.java
