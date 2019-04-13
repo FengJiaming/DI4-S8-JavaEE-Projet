@@ -31,11 +31,4 @@ public class AddressManager {
         this.repo.saveAndFlush(user);
     }
     
-    
-    
-   // public UserAccount getUserInfo
-    //public UserAccount supprimer()
-    
-            //userRepository.findAll();
-    
 }

@@ -84,12 +84,5 @@ public class Address  implements Serializable{
     public void setCountry(String Country) {
         this.Country = Country;
     }
-    
-    
-
-  
-
-    
-    
-    
+       
 }
