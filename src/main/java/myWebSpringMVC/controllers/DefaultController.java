@@ -21,35 +21,15 @@ public class DefaultController {
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
     //@Transactional
-    public String index(ModelMap map) {
-        
-        //UserAccount ua = repo.findById(1).get();
-       // UserAccount ua = uamanager.getUserAccountById(1);
-        
-        //
-        Owner ua1 = new Owner();
-        ua1.setID(2);
-        ua1.setCity("Tours");
-        ua1.setActive("Etudier");
-        ua1.setCountry("France");
-        ua1.setLastName("xiaoming");
-        
-        ua1.setFirstName("feng");
-        uamanager.updateUserAccount(ua1);
-        
-        UserAccount ua = uamanager.getUserAccountById(2);
-        
-       // uamanager.deleteUserAccountById(1);
-        
-        map.put("msg", "Hello Spring 5 Web MVC!");
-        map.put("userId", ua.getID());
-        map.put("userName", ua.getFirstName());
-         map.put("cCIty", ua.getCity());
-        //map.put("type", ua.getClass());
-        
-        
-        
-        
+    public String index(ModelMap map) {  
         return "index";
+    }
+        @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public String test(){
+        return "register";
+    }
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String test1(){
+        return "login";
     }
 }
