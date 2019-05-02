@@ -3,53 +3,71 @@ package myWebSpringMVC.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
 import myWebSpringMVC.domaine.model.UserAccount;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import myWebSpringMVC.domaine.model.Owner;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
+
 public class DefaultController {
 
 //    @Resource
 //    UserAccountRepository repo;
-    
+    /*
     @Resource
     UserAccountManager uamanager;
     @Resource
     UserAccount user;
+*/
     
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    //@Transactional
+    
+    @GetMapping(value = "/")
     public String index(ModelMap map) {  
         return "Home";
     }
+    
     @PostMapping(value = "/login")
     public void Post_login(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
        try (PrintWriter out = response.getWriter()) {      
-            request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);           
-            out.print("<div classe="+"container"+">");
+                      
             
+            
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+            
+            Logger logger = Logger.getLogger("User");
+            logger.log(Level.FINE,name );
+            logger.log(Level.FINE,password);
             
             if(true){
-                request.getParameter("name");
-                request.getParameter("password");
+                HttpSession session = request.getSession();
+                session.setAttribute("name", name);
+                request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
+                out.print("<div classe="+"container"+">");
+                //session.setAttribute("name", name);
                 
             }else{
+                request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
+                out.print("<div classe="+"container"+">");
+                request.setAttribute("name", name);
                 request.getRequestDispatcher("/WEB-INF/JSP/login.jsp").include(request, response);
-                //user or password false
+                
+                
             }
             out.print("</div>");
         }
+       
        
     }
     @GetMapping(value = "/login")
@@ -71,4 +89,18 @@ public class DefaultController {
             out.print("</div>");
         }
     }
+    @PostMapping(value = "/register")
+    public void post_register(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+       try (PrintWriter out = response.getWriter()) {      
+            request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
+            
+        }
+    }
+    @GetMapping(value = "/logout")
+    public void get_logout(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        HttpSession session = request.getSession();
+        session.invalidate();
+        request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
+    }
+
 }

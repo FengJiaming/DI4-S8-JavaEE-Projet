@@ -15,17 +15,30 @@
     <body> 
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-up">
 	  <a class="navbar-brand" href="<%=request.getContextPath()%>" >Home</a>
-	  <ul class="nav navbar-nav navbar-right">
-	    <li class="nav-item " >
-	      <a class="nav-link" href="<%=request.getContextPath()+"/login"%>">login</a>
-            </li>
-	  </ul>
-            <ul class="nav navbar-nav pull-right">
-                <li class="nav-item ">
+	  <ul class="nav navbar-nav">
+            <c:if test="${sessionScope.name == null}">
+                <li class="nav-item " >
+                  <a class="nav-link" href="<%=request.getContextPath()+"/login"%>">login</a>
+                </li>
+            </c:if>
+	    
+             <li class="nav-item ">
                     <a class="nav-link " href=<%=request.getContextPath()+"/register"%>>register</a>
                     
-                </li>
-            </ul>
+             </li>
+             <li class="nav-item ">
+                    <a class="nav-link " ><c:out value="<%=request.getSession().getAttribute("name")%>" /></a>
+                    
+             </li>
+             <c:if test="${sessionScope.name != null}">
+             <li class="nav-item ">
+                     <a class="nav-link " href=<%=request.getContextPath()+"/logout"%>>logout</a>
+                      
+             </li>
+            </c:if>
+             
+	  </ul>
+            
 	</nav>
     </body>
 </html>
