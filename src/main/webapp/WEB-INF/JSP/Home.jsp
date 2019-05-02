@@ -15,28 +15,17 @@
     <body> 
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-up">
 	  <a class="navbar-brand" href="<%=request.getContextPath()%>" >Home</a>
-	  <ul class="navbar-nav float-right">
+	  <ul class="nav navbar-nav navbar-right">
 	    <li class="nav-item " >
 	      <a class="nav-link" href="<%=request.getContextPath()+"/login"%>">login</a>
-	    </li>
-	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()+"/register"%>">register</a>
-	    </li>
+            </li>
 	  </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="nav-item ">
+                    <a class="nav-link " href=<%=request.getContextPath()+"/register"%>>register</a>
+                    
+                </li>
+            </ul>
 	</nav>
-        <div class="container"><br/>
-            <div class="alert alert-success">         
-                <strong>Success!</strong> It is working as we expected.
-            </div>
-            <h1>${cp}</h1> 
-            <h4>Spring 5 Web MVC via Annotations</h4> 
-            Spring says: <span class="blue">${msg}</span> 
-            User id: <span class="blue">${userId}</span> 
-            User name: <span class="blue">${userName}</span> 
-            <br /> 
-            <br /> 
-            <a href="javascript:void(0)" onclick="test()">Click to test JS</a> 
-            
-        </div>
-    </body> 
+    </body>
 </html>
