@@ -21,46 +21,46 @@ public class OpeningHr implements Serializable {
     
     @Id
     @Column(name = "ID")
-    private int ID;
+    private int id;
     
     @Column(name = "Weekday")
-    private String Weeking;
+    private String weeking;
     
     @Column(name = "StartTime")
-    private String StartTime;
+    private String startTime;
     
     @Column(name = "EndTime")
-    private String EndTime;        
+    private String endTime;        
     
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getWeeking() {
-        return Weeking;
+        return weeking;
     }
 
-    public void setWeeking(String Weeking) {
-        this.Weeking = Weeking;
+    public void setWeeking(String weeking) {
+        this.weeking = weeking;
     }
 
     public String getStartTime() {
-        return StartTime;
+        return startTime;
     }
 
-    public void setStartTime(String StartTime) {
-        this.StartTime = StartTime;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public String getEndTime() {
-        return EndTime;
+        return endTime;
     }
 
-    public void setEndTime(String EndTime) {
-        this.EndTime = EndTime;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }
