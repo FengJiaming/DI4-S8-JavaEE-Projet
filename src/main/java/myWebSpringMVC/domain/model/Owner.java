@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package myWebSpringMVC.domain.model;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 /**
  *
  * @author mengqingling

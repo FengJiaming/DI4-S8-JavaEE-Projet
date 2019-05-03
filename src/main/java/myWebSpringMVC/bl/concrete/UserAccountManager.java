@@ -30,29 +30,40 @@ public class UserAccountManager {
     public void updateUserAccount(UserAccount user){
         this.repo.saveAndFlush(user);
     }
-    
-    public boolean isValidLogin(String username, String password){
-        UserAccount userAccount  = getUserByName(username);
+//   UserAccount findOneByEmail(String account){
+//        return this.repo.findByEmail(account);
+//   }
 
-        if(userAccount == null)
-            return false;
-        else{
-            if(userAccount.getPassword().equals(password)) {
-                return true;
-            }else
-                return false;
-        }
-    }
-    
+//   public UserAccount getUserAccountByLastName(String email,String password) {
+//       return this.repo.findByEmailAndPassword(email, password); 
+//    }
+
+//    public boolean isValidLogin(String username, String password) {
+//        // String username;
+//        //username = 
+//        UserAccount userAccount = this.getUserAccountByLastName(username);
+//        if (userAccount == null) 
+//            return false;
+//       
+//        else{
+//            if (userAccount.getPassword().equals(password)) {
+//                return true;
+//            }else{
+//                return false;
+//            }
+//           
+//        }
+//    }
+
     //TO DO get all UserAccount
-    
-    public List<UserAccount> all(){
-        return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+    public List<UserAccount> all() {
+        return this.repo.findAll();
     }
     
-   // public UserAccount getUserInfo
+    
+    // public UserAccount getUserInfo
     //public UserAccount supprimer()
     
-            //userRepository.findAll();
+    //userRepository.findAll();
     
 }

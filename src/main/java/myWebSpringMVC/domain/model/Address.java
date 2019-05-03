@@ -5,16 +5,19 @@
  */
 package myWebSpringMVC.domain.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author mengqingling
  */
-public class Address {
- 
-
+@Entity
+@Table(name = "Address")
+public class Address  implements Serializable{
     @Id
     @Column(name = "ID")
     private int ID;
@@ -33,8 +36,6 @@ public class Address {
 
     @Column(name = "Country")
     private String Country;
-    
-    
 
     public int getID() {
         return ID;
@@ -83,7 +84,5 @@ public class Address {
     public void setCountry(String Country) {
         this.Country = Country;
     }
-    
-    
-    
+       
 }
