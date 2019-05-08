@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import static javax.persistence.DiscriminatorType.STRING;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -21,6 +23,7 @@ import javax.persistence.Table;
 public class UserAccount implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
     private int id;
 

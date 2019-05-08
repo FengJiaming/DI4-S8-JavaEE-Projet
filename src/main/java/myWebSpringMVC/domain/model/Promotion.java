@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,6 +28,7 @@ import javax.persistence.Temporal;
 public class Promotion implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
     private int id;
 
@@ -37,15 +40,20 @@ public class Promotion implements Serializable {
     
     @Column(name = "ShortDescription")
     private String shortDescription;
+    
     @Column(name = "LongDescription")
     private String longDescription;
+    
     @Column(name = "Position")
     private String position;
+    
     @Column(name = "Disabled")
     private boolean disabled;
+    
     @Column(name = "StartDate")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
+    
     @Column(name = "EndDate")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endDate;
