@@ -6,12 +6,19 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
-import myWebSpringMVC.domaine.model.UserAccount;
+import myWebSpringMVC.domain.model.UserAccount;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import myWebSpringMVC.bl.concrete.OpeningHrManager;
+import myWebSpringMVC.bl.concrete.PromotionManager;
+import myWebSpringMVC.bl.concrete.StoreManager;
+import myWebSpringMVC.domain.model.OpeningHr;
+import myWebSpringMVC.domain.model.Owner;
+import myWebSpringMVC.domain.model.Store;
+import myWebSpringMVC.domain.repository.UserAccountRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,19 +29,66 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 public class DefaultController {
 
-//    @Resource
-//    UserAccountRepository repo;
-    /*
+//   @Resource
+//   UserAccountRepository repo;
+    
     @Resource
     UserAccountManager uamanager;
     @Resource
-    UserAccount user;
-*/
+    StoreManager smanager;  
+    @Resource
+    OpeningHrManager ohmanager;
+    @Resource
+    PromotionManager pmanager;
     
-    
-    @GetMapping(value = "/")
-    public String index(ModelMap map) {  
-        return "Home";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    //@Transactional
+    public String index(ModelMap map) {
+        
+        //UserAccount ua = repo.findByEmail("");
+       // UserAccount ua = uamanager.getUserAccountById(1);
+        
+        //
+        
+        Owner ua2 = new Owner();
+        ua2.setID(3);
+        //ua1.setCity("Tours");
+        ua2.setActive("Etudier");
+        //ua1.setCountry("France");
+        ua2.setLastName("marie");
+        
+        ua2.setFirstName("feng");
+        uamanager.setUserAccount(ua2);
+        
+//        UserAccount ua = uamanager.getUserAccountById(2);
+        
+        Store st1 = new Store();
+        st1.setID(2);
+        st1.setKkey("key1");
+        st1.setEmail("907286845");
+        st1.setLattitude(1.1);
+        st1.setLongitude(23.15);
+        //st1.setLastModifiedBy(ua.getID());
+        
+//        smanager.setStore(st1);
+        /*
+        OpeningHr oh = new OpeningHr();
+        oh.setID(2);
+        oh.setWeeking("Mon.");
+        oh.setStartTime("07:00");
+        oh.setEndTime("21:00");
+       // oh.setClosed(false);
+        //oh.setTwentyFourH(false);
+        ohmanager.setOpeningHr(oh);
+        */
+       // uamanager.deleteUserAccountById(1);
+        
+        map.put("msg", "Hello Spring 5 Web MVC!");
+        map.put("userId",  1);//ua.getID());
+        map.put("userName", "test");//ua.getFirstName());
+        // map.put("cCIty", ua.getAddress().getCity());
+
+        return "index";
     }
     
     @PostMapping(value = "/login")
