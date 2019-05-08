@@ -1,5 +1,6 @@
 package myWebSpringMVC.bl.concrete;
 
+import java.util.List;
 import myWebSpringMVC.domain.repository.StoreRepository;
 import myWebSpringMVC.domain.model.Store;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class StoreManager {
     public void updateStore(Store user){
         this.repo.saveAndFlush(user);
     }
-    
+    public List<Store> all() { 
+        return this.repo.findAll(); 
+    } 
     
 }

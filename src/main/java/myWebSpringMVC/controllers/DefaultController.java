@@ -3,6 +3,7 @@ package myWebSpringMVC.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
@@ -18,6 +19,7 @@ import myWebSpringMVC.bl.concrete.StoreManager;
 import myWebSpringMVC.domain.model.Address;
 import myWebSpringMVC.domain.model.Client;
 import myWebSpringMVC.domain.model.Owner;
+import myWebSpringMVC.domain.model.Store;
 import myWebSpringMVC.domain.model.UserAccount;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -66,7 +68,7 @@ public class DefaultController {
                 session.setAttribute("name", name);
                 request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
                 out.print("<div classe="+"container"+">");
-                //session.setAttribute("name", name);
+                
                 
             }else{
                 request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
@@ -138,6 +140,8 @@ public class DefaultController {
             user.setPhoneNumber(PhoneNNumber);
             user.getAddress().add(address);
             
+            
+            
             uamanager.setUserAccount(user);
             out.print("<div classe="+"container"+">");
             out.print("<p class=\"alert alert-success\"> Client add</p>");
@@ -163,31 +167,93 @@ public class DefaultController {
         try (PrintWriter out = response.getWriter()) {      
             request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
             out.print("<div classe="+"container"+">");
-            /*
-            for (String var : array){
-                
-            } */
-            
+            out.print("<div classe="+"row"+">");
+            List<Store> stores = smanager.all();
+            out.print("<ul class=\"list-group col\">");
+             for (Store var : stores){
+                out.println("<form class=\"list-group-item list-group-item-action list-group-item-dark\" action=\"view_store\" method=\"post\">");
+                out.println("<div>");
+                out.println("Email:<input name=\"email\" type=\"text\" placeholder=\""+var.getEmail()+"\" value=\""+var.getEmail()+"\">");
+                out.println("</div>");
+                out.println("<div>");
+                out.println("Phone Number:<input name=\"phone\" type=\"text\" placeholder=\""+var.getPhoneNumber()+"\" value=\""+var.getPhoneNumber()+"\">");
+                out.println("</div>");
+                out.println("<div>");
+                out.println("Name:<input name=\"Name\" type=\"text\" placeholder=\""+var.getName()+"\" value=\""+var.getName()+"\">");
+                out.println("</div>");
+                out.println("<div>");
+                out.println("Lattitude:<input name=\"lattitude\" type=\"text\" placeholder=\""+var.getLattitude()+"\" value=\""+var.getLattitude()+"\">");
+                out.println("</div>");
+                out.println("<div>");
+                out.println("Longitude:<input name=\"longitude\" type=\"text\" placeholder=\""+var.getLongitude()+"\" value=\""+var.getLongitude()+"\">");
+                out.println("</div>");
+                out.println("<input type=\"submit\" value=\"modify\" class=\"btn btn-lg btn-dark btn-block text-uppercase\">  ");
+                out.println("</div>");
+                out.println("</form>");
+            } 
+                   
+            out.print("</ul>");
             out.print("</div>");
+            out.print("</div>");
+            
+           
+        }
+        
+    }
+    @PostMapping(value = "/view_store")
+    public void post_viewstore(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{       
+        try (PrintWriter out = response.getWriter()) {      
+            //request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
+
+            
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+            String name = request.getParameter("Name");
+            String lattitude = request.getParameter("lattitude");
+            String longitude = request.getParameter("longitude");
+            
+            Store new_store = new Store();
+            new_store.setEmail(email);
+            new_store.setPhoneNumber(phone);
+            new_store.setName(name);
+            new_store.setLattitude(Double.parseDouble(lattitude));
+            new_store.setLongitude(Double.parseDouble(longitude));
+            smanager.updateStore(new_store);
+
+            
+            get_viewstore(request, response);
+            
+           
         }
         
     }
     @GetMapping(value = "/test")
     public void test(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
        try (PrintWriter out = response.getWriter()) {
-                    Client client = new Client();
-                    
-                    client.setLastName("test");
-                    client.setEmail("1234@gmail.com");
-                    client.setPassword("123456");
-                    uamanager.setUserAccount(client);
-                    Owner ua2 = new Owner();
-                    ua2.setID(3);
-                    ua2.setActive("Etudier");
-                    ua2.setLastName("marie");
-                    ua2.setPassword("123456");
-                    //ua2.setAddress(addList);
-                    uamanager.setUserAccount(ua2);
+            Client client = new Client();
+            
+            
+            client.setLastName("test");
+            client.setEmail("123"+Math.random()+"@gmail.com");
+            client.setPassword("123456");
+            uamanager.setUserAccount(client);
+            
+            Owner ua2 = new Owner();
+            ua2.setID(3);
+            ua2.setActive("Etudier");
+            ua2.setLastName("marie");
+            ua2.setPassword("123456");
+            //ua2.setAddress(addList);
+            uamanager.setUserAccount(ua2);
+            
+            Store st1 = new Store();
+            st1.setKkey("key1");
+            st1.setEmail("90728684566");
+            st1.setLattitude(1.1);
+            st1.setLongitude(23.15);
+            smanager.setStore(st1);
+            
+        
             request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);           
             out.print("<div classe="+"container"+">");
             out.print("Page de test");

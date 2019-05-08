@@ -20,7 +20,7 @@
                   <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit">Sign in</button>
                   <hr class="my-4">
                 </form>
-                <c:if test="${ !empty name }"><p class="alert alert-danger"><c:out value="login or password not exist" /></p></c:if>
+                <c:if test="${ !empty name }"><p class="alert alert-danger"><c:out value="login or password doesn't exist" /></p></c:if>
             </div>
       </div>
 </div>
