@@ -23,7 +23,16 @@ public class UserAccountManager {
     }
     
     public void setUserAccount(UserAccount user){
+        int nbUser = this.repo.findAll().size();
+        
+        for(int i=0; i < nbUser ; i++){
+            
+            if(user.getEmail().equals(this.repo.findAll().get(i).getEmail())){
+                return ;
+            }
+        }  
         this.repo.save(user);
+
     }
     
     public void deleteUserAccountById(int id){
