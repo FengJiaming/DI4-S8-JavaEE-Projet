@@ -10,6 +10,7 @@ import myWebSpringMVC.bl.concrete.OpeningHrManager;
 import myWebSpringMVC.bl.concrete.PromotionManager;
 import myWebSpringMVC.bl.concrete.StoreManager;
 import myWebSpringMVC.domain.model.Address;
+import myWebSpringMVC.domain.model.Client;
 import myWebSpringMVC.domain.model.OpeningHr;
 import myWebSpringMVC.domain.model.Owner;
 import myWebSpringMVC.domain.model.Promotion;
@@ -61,8 +62,15 @@ public class DefaultController {
         ua2.setID(3);
         ua2.setActive("Etudier");
         ua2.setLastName("marie");
+        ua2.setPassword("123456");
         ua2.setAddress(addList);
         uamanager.setUserAccount(ua2);
+        
+        Client client = new Client();
+        client.setID(4);
+        client.setEmail("1234@gmail.com");
+        client.setPassword("123456");
+        uamanager.setUserAccount(client);
         
 //        UserAccount ua = uamanager.getUserAccountById(2);
         Promotion promo = new Promotion();
