@@ -22,9 +22,9 @@ public class GetStoreInfoService {
     public GetStoreInfoService(StoreManager storeManager) {
         this.storeManager = storeManager;
     }
-    
+    /*
     public List<Store> all(){
         return this.storeManager.all();
-    }
+    }*/
     
 }

@@ -31,6 +31,16 @@ public class UserAccountManager {
         this.repo.saveAndFlush(user);
     }
    
+    public UserAccount getUserAccountByEmailPassword(String email, String password) {
+        return this.repo.findByEmail_Password(email,password);
+    }
+    
+    public void modifyUUID(int id, String uuid) {
+        UserAccount user = getUserAccountById(id);
+        user.setUUID(uuid);
+        this.repo.save(user);
+        this.repo.flush();
+    }
 //   public UserAccount getUserAccountByLastName(String lastname) {
 //       return this.repo.findByLastnameOrFirstName(lastname); 
 //    }

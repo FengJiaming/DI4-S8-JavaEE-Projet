@@ -44,7 +44,7 @@ public class TestRest {
         return "Hello REST!";
 
     }
-
+    
     @RequestMapping(value = "/putTest", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON)
 
     public String putJson(@RequestBody String content) {
@@ -57,7 +57,7 @@ public class TestRest {
 
     public String myMethod(@PathVariable("id") String id) {
 
-        UserAccount ua = uamanager.getUserAccountById(1);
+        UserAccount ua = uamanager.getUserAccountById(3);
 
         JSONObject obj = new JSONObject();
 
