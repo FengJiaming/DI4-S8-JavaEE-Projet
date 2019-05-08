@@ -40,6 +40,10 @@
                       
              </li>
             </c:if>
+             <li class="nav-item ">
+                    <a class="nav-link " href=<%=request.getContextPath()+"/test"%>>test</a>
+                    
+             </li>
              
 	  </ul>
             
