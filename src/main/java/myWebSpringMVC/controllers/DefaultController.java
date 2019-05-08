@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import myWebSpringMVC.bl.concrete.OpeningHrManager;
 import myWebSpringMVC.bl.concrete.PromotionManager;
 import myWebSpringMVC.bl.concrete.StoreManager;
+import myWebSpringMVC.domain.model.Address;
 import myWebSpringMVC.domain.model.OpeningHr;
 import myWebSpringMVC.domain.model.Owner;
 import myWebSpringMVC.domain.model.Store;
@@ -41,7 +42,7 @@ public class DefaultController {
     @Resource
     PromotionManager pmanager;
     
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping(value = "/")
     //@Transactional
     public String index(ModelMap map) {
         
@@ -49,7 +50,7 @@ public class DefaultController {
        // UserAccount ua = uamanager.getUserAccountById(1);
         
         //
-        
+        /*    
         Owner ua2 = new Owner();
         ua2.setID(3);
         //ua1.setCity("Tours");
@@ -69,7 +70,7 @@ public class DefaultController {
         st1.setLattitude(1.1);
         st1.setLongitude(23.15);
         //st1.setLastModifiedBy(ua.getID());
-        
+        */
 //        smanager.setStore(st1);
         /*
         OpeningHr oh = new OpeningHr();
@@ -88,7 +89,7 @@ public class DefaultController {
         map.put("userName", "test");//ua.getFirstName());
         // map.put("cCIty", ua.getAddress().getCity());
 
-        return "index";
+        return "Home";
     }
     
     @PostMapping(value = "/login")
@@ -104,7 +105,7 @@ public class DefaultController {
             logger.log(Level.FINE,name );
             logger.log(Level.FINE,password);
             
-            if(true){
+            if(uamanager.verifierLogin(name, password)){
                 HttpSession session = request.getSession();
                 session.setAttribute("name", name);
                 request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
@@ -120,6 +121,10 @@ public class DefaultController {
                 
             }
             out.print("</div>");
+        }catch(Exception e){
+            Logger logger = Logger.getLogger("error");
+            logger.log(Level.FINE,e.getMessage() );
+            
         }
        
        
@@ -148,6 +153,42 @@ public class DefaultController {
        try (PrintWriter out = response.getWriter()) {      
             request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
             
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String LastName = request.getParameter("LastName");
+            String FirstName = request.getParameter("FirstName");
+            String PhoneNNumber = request.getParameter("PhoneNNumber");
+            String Street = request.getParameter("Street");
+            String City = request.getParameter("City");
+            String State = request.getParameter("State");
+            String ZipCode = request.getParameter("ZipCode");
+            String Country = request.getParameter("Country");
+            
+            
+            Address address = new Address();
+            address.setCity(City);
+            address.setState(State);
+            address.setStreet(Street);
+            address.setZipCode(ZipCode);
+            address.setCountry(Country);
+            
+            
+            UserAccount user = new UserAccount();
+            user.setEmail(email);
+            user.setFirstName(FirstName);
+            user.setLastName(LastName);
+            user.setPassword(password);
+            user.setPhoneNumber(PhoneNNumber);
+            user.getAddress().add(address);
+            
+            uamanager.setUserAccount(user);
+            
+            
+        }catch(Exception e){
+            
+            Logger logger = Logger.getLogger("error");
+            logger.log(Level.FINE,e.getMessage() );
+            request.setAttribute("name", "test");
         }
     }
     @GetMapping(value = "/logout")
@@ -155,6 +196,13 @@ public class DefaultController {
         HttpSession session = request.getSession();
         session.invalidate();
         request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
+    }
+    @GetMapping(value = "/view_store")
+    public void get_viewstore(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+       
+        request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
+        request.getRequestDispatcher("/WEB-INF/JSP/view_store.jsp").include(request, response);
+        
     }
 
 }

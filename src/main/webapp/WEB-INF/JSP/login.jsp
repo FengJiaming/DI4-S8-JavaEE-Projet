@@ -7,7 +7,7 @@
                 <h5 class="card-title text-center">Sign In</h5>
                 <form class="form-signin" action="login" method="post" >
                   <div class="form-label-group">
-                    <input type="text" id="inputlogin" class="form-control" placeholder="login" required autofocus name="name">
+                    <input type="email" id="inputlogin" class="form-control" placeholder="login" required autofocus name="name">
                     <label for="inputlogin">login</label>
                   </div>
 

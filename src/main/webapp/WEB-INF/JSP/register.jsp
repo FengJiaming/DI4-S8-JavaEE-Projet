@@ -13,4 +13,5 @@
     
     <input type="submit" value="register" class="btn btn-lg btn-dark btn-block text-uppercase">  
     </form> 
+    <c:if test="${ empty name }"><p class="alert alert-danger"><c:out value="register failed" /></p></c:if>
 </div>

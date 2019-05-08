@@ -16,6 +16,10 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-up">
 	  <a class="navbar-brand" href="<%=request.getContextPath()%>" >Home</a>
 	  <ul class="nav navbar-nav">
+              <li class="nav-item ">
+                    <a class="nav-link " href=<%=request.getContextPath()+"/view_store"%>>stores</a>
+                    
+             </li>
             <c:if test="${sessionScope.name == null}">
                 <li class="nav-item " >
                   <a class="nav-link" href="<%=request.getContextPath()+"/login"%>">login</a>
