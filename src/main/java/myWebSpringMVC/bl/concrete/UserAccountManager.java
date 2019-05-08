@@ -5,6 +5,8 @@ import myWebSpringMVC.domain.model.UserAccount;
 import myWebSpringMVC.domain.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+//import org.springframework.util.DigestUtils;
+//import org.springframework.util.DigestUtils;
 
 @Component
 public class UserAccountManager {
@@ -58,17 +60,20 @@ public class UserAccountManager {
                 return false;
             }
         }
+    public boolean verifierLogin(String email,String password){
+            UserAccount user= new UserAccount();
+            user=repo.findByEmail(email);
+            return (user.getPassword().equals(password));
     }
-*/
+    
     //TO DO get all UserAccount
     public List<UserAccount> all() {
         return this.repo.findAll();
     }
     
-    
    // public UserAccount getUserInfo
     //public UserAccount supprimer()
     
-            //userRepository.findAll();
+    //userRepository.findAll();
     
 }

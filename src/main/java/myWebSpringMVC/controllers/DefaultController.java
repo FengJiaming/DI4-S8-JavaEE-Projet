@@ -10,6 +10,7 @@ import myWebSpringMVC.bl.concrete.StoreManager;
 import myWebSpringMVC.domain.model.OpeningHr;
 import myWebSpringMVC.domain.model.Owner;
 import myWebSpringMVC.domain.model.Store;
+import myWebSpringMVC.domain.repository.UserAccountRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class DefaultController {
 
- //   @Resource
-   // UserAccountRepository repo;
+//   @Resource
+//   UserAccountRepository repo;
     
     @Resource
     UserAccountManager uamanager;
@@ -34,7 +35,7 @@ public class DefaultController {
     //@Transactional
     public String index(ModelMap map) {
         
-        //UserAccount ua = repo.findById(1).get();
+        //UserAccount ua = repo.findByEmail("");
        // UserAccount ua = uamanager.getUserAccountById(1);
         
         //

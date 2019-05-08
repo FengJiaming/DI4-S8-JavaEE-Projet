@@ -22,39 +22,39 @@ public class UserAccount implements Serializable {
 
     @Id
     @Column(name = "ID")
-    private int ID;
+    private int id;
 
     @Column(name = "FirstName")
-    private String FirstName;
+    private String firstName;
 
     @Column(name = "LastName")
-    private String LastName;
+    private String lastName;
 
     @Column(name = "Email")
-    private String Email;
+    private String email;
 
     @Column(name = "Password")
-    private String Password;
+    private String password;
 
     @Column(name = "PhoneNumber")
-    private String PhoneNumber;
+    private String phoneNumber;
 
     @Column(name = "Active")
-    private String Active;
+    private String active;
 
     @Column(name = "CreationDate")
-    private String CreationDate;
+    private String creationDate;
 
     @Column(name = "LastModificationDate")
-    private String LastModificationDate;
+    private String lastModificationDate;
 
     @Column(name = "ResetPasswordLink")
-    private String ResetPasswordLink;
+    private String resetPasswordLink;
 
     @Column(name = "ResetLinkValidateDate")
-    private String ResetLinkValidateDate;
+    private String resetLinkValidateDate;
     @Column(name = "IsRemoved")
-    private boolean IsRemoved;
+    private boolean isRemoved;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Address> address = new ArrayList<>();
@@ -72,99 +72,99 @@ public class UserAccount implements Serializable {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
-    public void setPhoneNumber(String PhoneNumber) {
-        this.PhoneNumber = PhoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getActive() {
-        return Active;
+        return active;
     }
 
-    public void setActive(String Active) {
-        this.Active = Active;
+    public void setActive(String active) {
+        this.active = active;
     }
 
     public String getCreationDate() {
-        return CreationDate;
+        return creationDate;
     }
 
-    public void setCreationDate(String CreationDate) {
-        this.CreationDate = CreationDate;
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getLastModificationDate() {
-        return LastModificationDate;
+        return lastModificationDate;
     }
 
-    public void setLastModificationDate(String LastModificationDate) {
-        this.LastModificationDate = LastModificationDate;
+    public void setLastModificationDate(String lastModificationDate) {
+        this.lastModificationDate = lastModificationDate;
     }
 
     public String getResetPasswordLink() {
-        return ResetPasswordLink;
+        return resetPasswordLink;
     }
 
-    public void setResetPasswordLink(String ResetPasswordLink) {
-        this.ResetPasswordLink = ResetPasswordLink;
+    public void setResetPasswordLink(String resetPasswordLink) {
+        this.resetPasswordLink = resetPasswordLink;
     }
 
     public String getResetLinkValidateDate() {
-        return ResetLinkValidateDate;
+        return resetLinkValidateDate;
     }
 
-    public void setResetLinkValidateDate(String ResetLinkValidateDate) {
-        this.ResetLinkValidateDate = ResetLinkValidateDate;
+    public void setResetLinkValidateDate(String resetLinkValidateDate) {
+        this.resetLinkValidateDate = resetLinkValidateDate;
     }
 
     public boolean isIsRemoved() {
-        return IsRemoved;
+        return isRemoved;
     }
 
-    public void setIsRemoved(boolean IsRemoved) {
-        this.IsRemoved = IsRemoved;
+    public void setIsRemoved(boolean isRemoved) {
+        this.isRemoved = isRemoved;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
 }

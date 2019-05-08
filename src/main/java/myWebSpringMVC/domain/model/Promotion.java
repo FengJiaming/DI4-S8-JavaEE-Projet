@@ -27,102 +27,102 @@ public class Promotion implements Serializable {
 
     @Id
     @Column(name = "ID")
-    private int ID;
+    private int id;
 
     @Column(name = "store_key")
     private String store_key;
 
     @Column(name = "Title")
-    private String Title;
+    private String title;
     
     @Column(name = "ShortDescription")
-    private String ShortDescription;
+    private String shortDescription;
     @Column(name = "LongDescription")
-    private String LongDescription;
+    private String longDescription;
     @Column(name = "Position")
-    private String Position;
+    private String position;
     @Column(name = "Disabled")
-    private boolean Disabled;
+    private boolean disabled;
     @Column(name = "StartDate")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date StartDate;
+    private Date startDate;
     @Column(name = "EndDate")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date EndDate;
+    private Date endDate;
     
     @Column(name = "ImageURL")
-    private String ImageURL;
+    private String imageURL;
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
-    public void setTitle(String Title) {
-        this.Title = Title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getShortDescription() {
-        return ShortDescription;
+        return shortDescription;
     }
 
-    public void setShortDescription(String ShortDescription) {
-        this.ShortDescription = ShortDescription;
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
     public String getLongDescription() {
-        return LongDescription;
+        return longDescription;
     }
 
-    public void setLongDescription(String LongDescription) {
-        this.LongDescription = LongDescription;
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
     }
 
     public String getPosition() {
-        return Position;
+        return position;
     }
 
-    public void setPosition(String Position) {
-        this.Position = Position;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public boolean isDisabled() {
-        return Disabled;
+        return disabled;
     }
 
-    public void setDisabled(boolean Disabled) {
-        this.Disabled = Disabled;
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
 
     public Date getStartDate() {
-        return StartDate;
+        return startDate;
     }
 
-    public void setStartDate(Date StartDate) {
-        this.StartDate = StartDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Date getEndDate() {
-        return EndDate;
+        return endDate;
     }
 
-    public void setEndDate(Date EndDate) {
-        this.EndDate = EndDate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public String getImageURL() {
-        return ImageURL;
+        return imageURL;
     }
 
-    public void setImageURL(String ImageURL) {
-        this.ImageURL = ImageURL;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
         public String getStore_key() {

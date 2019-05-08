@@ -28,7 +28,7 @@ public class Store implements Serializable {
 
     @Id
     @Column(name = "ID")
-    private int ID;
+    private int id;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Promotion> promotions = new ArrayList<>();
@@ -43,29 +43,29 @@ public class Store implements Serializable {
     private Address address;
 
     @Column(name = "Name")
-    private String Name;
+    private String name;
 
     @Column(name = "Kkey")
-    private String Kkey;
+    private String kkey;
 
     @Column(name = "PhoneNumber")
-    private String PhoneNumber;
+    private String phoneNumber;
 
     @Column(name = "Email")
-    private String Email;
+    private String email;
 
     @Column(name = "Lattitude")
-    private double Lattitude;
+    private double lattitude;
 
     @Column(name = "Longitude")
-    private double Longitude;
+    private double longitude;
 
     @Column(name = "LastModifiedDate")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date LastModifiedDate;
+    private Date lastModifiedDate;
 
     @Column(name = "LastModifiedBy")
-    private int LastModifiedBy;
+    private int lastModifiedBy;
 
     public Address getAddress() {
         return address;
@@ -76,75 +76,75 @@ public class Store implements Serializable {
     }
 
     public Date getLastModifiedDate() {
-        return LastModifiedDate;
+        return lastModifiedDate;
     }
 
     public void setLastModifiedDate(Date LastModifiedDate) {
-        this.LastModifiedDate = LastModifiedDate;
+        this.lastModifiedDate = LastModifiedDate;
     }
 
     public int getLastModifiedBy() {
-        return LastModifiedBy;
+        return lastModifiedBy;
     }
 
     public void setLastModifiedBy(int LastModifiedBy) {
-        this.LastModifiedBy = LastModifiedBy;
+        this.lastModifiedBy = LastModifiedBy;
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
-    public void setPhoneNumber(String PhoneNumber) {
-        this.PhoneNumber = PhoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public double getLattitude() {
-        return Lattitude;
+        return lattitude;
     }
 
-    public void setLattitude(double Lattitude) {
-        this.Lattitude = Lattitude;
+    public void setLattitude(double lattitude) {
+        this.lattitude = lattitude;
     }
 
     public double getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
-    public void setLongitude(double Longitude) {
-        this.Longitude = Longitude;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
     
     public String getKkey() {
-        return Kkey;
+        return kkey;
     }
 
-    public void setKkey(String Kkey) {
-        this.Kkey = Kkey;
+    public void setKkey(String kkey) {
+        this.kkey = kkey;
     }
 
 }
