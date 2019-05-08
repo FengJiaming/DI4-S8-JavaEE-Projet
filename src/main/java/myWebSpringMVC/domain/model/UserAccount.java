@@ -24,6 +24,9 @@ public class UserAccount implements Serializable {
     @Column(name = "ID")
     private int id;
 
+    @Column(name = "UUID")
+    private String uuid;
+    
     @Column(name = "FirstName")
     private String firstName;
 
@@ -79,6 +82,14 @@ public class UserAccount implements Serializable {
         this.id = id;
     }
 
+    public String getUUID() {
+        return uuid;
+    }
+    
+    public void setUUID(String uuid) {
+        this.uuid = uuid;
+    }
+    
     public String getLastName() {
         return lastName;
     }
@@ -166,5 +177,6 @@ public class UserAccount implements Serializable {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
 
 }

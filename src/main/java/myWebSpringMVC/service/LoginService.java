@@ -6,6 +6,8 @@
 package myWebSpringMVC.service;
 
 import java.io.IOException;
+import org.apache.log4j.Logger;
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -19,7 +21,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import myWebSpringMVC.domain.model.UserAccount;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
-import myWebSpringMVC.helpers.TokenManagement;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,14 +28,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.codehaus.jackson.map.ObjectMapper;
+//import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
  * @author FENG
  */
-
 @RestController
 
 @RequestMapping("/api/LoginService")
@@ -42,9 +42,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginService {
 
     //@Inject
-    private static final Log log = LogFactory.getLog(LoginService.class);
+    //private static final Log log = LogFactory.getLog(LoginService.class);
+    private static final Logger logger = Logger.getLogger(LoginService.class);
 
-    @Inject
+    @Resource
     UserAccountManager uamanager;
 
     public LoginService(UserAccountManager uamanager) {
@@ -61,45 +62,34 @@ public class LoginService {
     @RequestMapping(value = "/Login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON)
     public Response login(@QueryParam("email") String email, @QueryParam("password") String password) {
 
+        logger.info("Login - Email:" + email + " Password:" + password);
+
         try {
             //ObjectMapper mapper = new ObjectMapper();
             //UserAccount user = mapper.readValue(credentials, UserAccount.class);
+
             UserAccount user = uamanager.getUserAccountByEmailPassword(email, password);
+            logger.info("UserID:" + user.getID());
             int id = 0;
             if (user == null) {
+                logger.info("User is null");
                 throw new SecurityException("Email or password invalid");
             } else {
                 id = user.getID();
             }
+            logger.info("ca va");
+            String token = TokenManagement.generateToken(id, uamanager);
+            logger.info("token created");
+            logger.info("token : " + token);
 
-            String token = TokenManagement.generateToken(id);
-            log.info("token created");
-            log.info("token : "+ token);
-            
             // Return the token on the response
             return Response.ok().header(AUTHORIZATION, "Token : " + token).build();
-            //log.info("log:login" + user.getFirstName());
-    /*
-                return Response.status(Response.Status.ACCEPTED).entity(credentials).build();
-            } else {
-                return Response.status(Response.Status.UNAUTHORIZED).entity(credentials).build();
-            }*/
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
+            logger.error("Exception" + e.getMessage());
             return Response.status(Response.Status.FORBIDDEN).build();
         }
     }
-    /*
-    public boolean login(UserAccount userAccount) {
-        log.info("log:login" + userAccount.getFirstName());
-        if(uamanager.isValidLogin(userAccount.getFirstName(), userAccount.getPassword())){
-            return true;
-            //return "entries";
-        }
-        return false;
-        
-    }*/
 
-   
 }
