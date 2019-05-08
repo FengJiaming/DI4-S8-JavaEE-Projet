@@ -45,13 +45,13 @@ public class DefaultController {
         //
         
         Address add = new Address();
-        add.setID(1);
+        //add.setID(1);
         add.setCity("Tours");
         add.setCountry("France");
-        add.setState("Indre-et-loire");
+        add.setState("Indre");
         amanager.setAddress(add);
-        add.setCity("Toulouse");
-        amanager.updateAddress(add);
+        //add.setCity("Toulouse");
+        //amanager.updateAddress(add);
         //Address add1 = new Address();
         //add1 = amanager.getAddressById(2);
         //amanager.deleteAddressById(3);
@@ -59,7 +59,7 @@ public class DefaultController {
         List<Address> addList = new ArrayList<>();
         addList.add(add);
         Owner ua2 = new Owner();
-        ua2.setID(3);
+        //ua2.setID(3);
         ua2.setActive("Etudier");
         ua2.setLastName("marie");
         ua2.setPassword("123456");
@@ -67,7 +67,7 @@ public class DefaultController {
         uamanager.setUserAccount(ua2);
         
         Client client = new Client();
-        client.setID(4);
+        //client.setID(4);
         client.setEmail("1234@gmail.com");
         client.setPassword("123456");
         uamanager.setUserAccount(client);

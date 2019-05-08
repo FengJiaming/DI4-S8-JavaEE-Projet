@@ -59,7 +59,7 @@ public class UserAccount implements Serializable {
     @Column(name = "IsRemoved")
     private boolean isRemoved;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<Address> address = new ArrayList<>();
 
     public List<Address> getAddress() {
