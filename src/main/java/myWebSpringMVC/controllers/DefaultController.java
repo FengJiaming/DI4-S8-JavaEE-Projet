@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
-import myWebSpringMVC.domain.model.UserAccount;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,7 @@ import myWebSpringMVC.bl.concrete.StoreManager;
 import myWebSpringMVC.domain.model.Address;
 import myWebSpringMVC.domain.model.OpeningHr;
 import myWebSpringMVC.domain.model.Owner;
+import myWebSpringMVC.domain.model.Promotion;
 import myWebSpringMVC.domain.model.Store;
 import myWebSpringMVC.domain.repository.UserAccountRepository;
 import org.springframework.stereotype.Controller;
@@ -30,9 +30,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 public class DefaultController {
 
-//   @Resource
-//   UserAccountRepository repo;
-    
     @Resource
     UserAccountManager uamanager;
     @Resource
@@ -41,27 +38,42 @@ public class DefaultController {
     OpeningHrManager ohmanager;
     @Resource
     PromotionManager pmanager;
+    @Resource
+    AddressManager amanager;   
     
     @GetMapping(value = "/")
     //@Transactional
     public String index(ModelMap map) {
         
-        //UserAccount ua = repo.findByEmail("");
-       // UserAccount ua = uamanager.getUserAccountById(1);
-        
+        // UserAccount ua = repo.findByEmail("");
+       //UserAccount ua = uamanager.getUserAccountByEmail("907286845@qq.com");
+         //int uaid = ua.getID();
         //
         /*    
         Owner ua2 = new Owner();
         ua2.setID(3);
-        //ua1.setCity("Tours");
         ua2.setActive("Etudier");
-        //ua1.setCountry("France");
         ua2.setLastName("marie");
-        
-        ua2.setFirstName("feng");
+        ua2.setPassword("123456");
+        ua2.setAddress(addList);
         uamanager.setUserAccount(ua2);
         
+        Client client = new Client();
+        client.setID(4);
+        client.setEmail("1234@gmail.com");
+        client.setPassword("123456");
+        uamanager.setUserAccount(client);
+        
 //        UserAccount ua = uamanager.getUserAccountById(2);
+        Promotion promo = new Promotion();
+        promo.setID(1);
+        promo.setImageURL("url");
+        promo.setPosition("Tours");
+        promo.setTitle("title1");
+        pmanager.setPromotion(promo);
+        
+        List<Promotion> proList = new ArrayList<>();
+        proList.add(promo);
         
         Store st1 = new Store();
         st1.setID(2);
@@ -81,7 +93,7 @@ public class DefaultController {
        // oh.setClosed(false);
         //oh.setTwentyFourH(false);
         ohmanager.setOpeningHr(oh);
-        */
+         
        // uamanager.deleteUserAccountById(1);
         
         map.put("msg", "Hello Spring 5 Web MVC!");

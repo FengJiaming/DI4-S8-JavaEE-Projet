@@ -60,9 +60,9 @@ public class UserAccountManager {
    
    
    
-//   public UserAccount getUserAccountByLastName(String name) {
-//       return this.repo.findByLastNameOrFirstName(name); 
-//    }
+   public UserAccount getUserAccountByEmail(String email) {
+       return this.repo.findByEmail(email); 
+    }
 
 //    public boolean isValidLogin(String username, String password) {
 //        // String username;
