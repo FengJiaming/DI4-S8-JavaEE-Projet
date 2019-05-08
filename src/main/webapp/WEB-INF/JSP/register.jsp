@@ -2,7 +2,7 @@
     <form class="form-signin" action="register" method="post">  
     <input type="text" id="LastName" class="form-control" placeholder="LastName" required autofocus name="LastName">
     <input type="text" id="firstname" class="form-control" placeholder="FirstName" required autofocus name="FirstName">
-    <input type="number" id="Phone" class="form-control" placeholder="PhoneNumber" required autofocus name="PhoneNNumber">
+    <input type="tel" id="Phone" class="form-control "  placeholder="PhoneNumber" required autofocus name="PhoneNNumber">
     <input type="text" id="Street" class="form-control" placeholder="Street" required autofocus name="Street">
     <input type="text" id="City" class="form-control" placeholder="City" required autofocus name="City">
     <input type="text" id="State" class="form-control" placeholder="State" required autofocus name="State">

@@ -1,4 +1,15 @@
+myWebSpringMVC/bl/concrete/OwnerManager.class
+myWebSpringMVC/controllers/DefaultController.class
+myWebSpringMVC/domaine/model/Client.class
 myWebSpringMVC/config/AppConfig.class
+myWebSpringMVC/bl/concrete/ClientManager.class
+myWebSpringMVC/domain/repository/OwnerRepository.class
+myWebSpringMVC/domain/repository/AdministratorRepository.class
+myWebSpringMVC/domaine/model/UserAccount.class
 myWebSpringMVC/bl/concrete/UserAccountManager.class
+myWebSpringMVC/domain/repository/ClientRepository.class
 myWebSpringMVC/config/WebInitializer.class
+myWebSpringMVC/domaine/model/Administrator.class
 myWebSpringMVC/domain/repository/UserAccountRepository.class
+myWebSpringMVC/bl/concrete/AdministratorManager.class
+myWebSpringMVC/domaine/model/Owner.class
