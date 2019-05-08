@@ -78,9 +78,9 @@ public class DefaultController {
             }
             out.print("</div>");
         }catch(Exception e){
-            
             Logger logger = Logger.getLogger("error");
             logger.log(Level.FINE,e.getMessage() );
+            System.out.println(e);
             
         }
        
@@ -139,6 +139,9 @@ public class DefaultController {
             user.getAddress().add(address);
             
             uamanager.setUserAccount(user);
+            out.print("<div classe="+"container"+">");
+            out.print("<p class=\"alert alert-success\"> Client add</p>");
+            out.print("</div>");
             
             
         }catch(Exception e){
@@ -157,8 +160,16 @@ public class DefaultController {
     @GetMapping(value = "/view_store")
     public void get_viewstore(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
        
-        request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
-        request.getRequestDispatcher("/WEB-INF/JSP/view_store.jsp").include(request, response);
+        try (PrintWriter out = response.getWriter()) {      
+            request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
+            out.print("<div classe="+"container"+">");
+            /*
+            for (String var : array){
+                
+            } */
+            
+            out.print("</div>");
+        }
         
     }
     @GetMapping(value = "/test")
@@ -179,7 +190,7 @@ public class DefaultController {
                     uamanager.setUserAccount(ua2);
             request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);           
             out.print("<div classe="+"container"+">");
-            out.print("test");
+            out.print("Page de test");
             out.print("</div>");
         }
         request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);

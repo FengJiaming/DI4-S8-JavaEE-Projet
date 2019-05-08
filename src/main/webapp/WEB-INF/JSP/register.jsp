@@ -1,3 +1,5 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="container">
     <form class="form-signin" action="register" method="post">  
     <input type="text" id="LastName" class="form-control" placeholder="LastName" required autofocus name="LastName">
@@ -13,5 +15,5 @@
     
     <input type="submit" value="register" class="btn btn-lg btn-dark btn-block text-uppercase">  
     </form> 
-    <c:if test="${ empty name }"><p class="alert alert-danger"><c:out value="register failed" /></p></c:if>
+    <c:if test="${ !empty name }"><p class="alert alert-danger"><c:out value="register failed" /></p></c:if>
 </div>
