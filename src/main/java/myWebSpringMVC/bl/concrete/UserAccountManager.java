@@ -26,6 +26,18 @@ public class UserAccountManager {
         this.repo.save(user);
     }
     
+        public boolean verifierEmailExist(UserAccount user){
+          int nbUser = this.repo.findAll().size();
+        
+        for(int i=0; i < nbUser ; i++){
+            
+            if(user.getEmail().equals(this.repo.findAll().get(i).getEmail())){
+                return true;
+            }
+        }  
+        return false;
+    }
+        
     public void deleteUserAccountById(int id){
         this.repo.delete(this.repo.findById(id).get());
     }
