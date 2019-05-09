@@ -89,7 +89,6 @@ public class DefaultController {
         st1.setEmail("907286845");
         st1.setLattitude(1.1);
         st1.setLongitude(23.15);
-        st1.setPromotions(proList);
         //st1.setLastModifiedBy(ua.getID());   
         smanager.setStore(st1);
         

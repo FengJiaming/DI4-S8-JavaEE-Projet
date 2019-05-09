@@ -35,16 +35,16 @@ public class UserAccountManager {
 
     }
     
-        public boolean verifierEmailExist(UserAccount user){
-          int nbUser = this.repo.findAll().size();
+        public boolean verifierEmailExist(String email){
+            int nbUser = this.repo.findAll().size();
         
-        for(int i=0; i < nbUser ; i++){
+            for(int i=0; i < nbUser ; i++){
             
-            if(user.getEmail().equals(this.repo.findAll().get(i).getEmail())){
-                return true;
-            }
-        }  
-        return false;
+                if(email.equals(this.repo.findAll().get(i).getEmail())){
+                    return true;
+                }
+            }  
+            return false;
     }
         
     public void deleteUserAccountById(int id){
