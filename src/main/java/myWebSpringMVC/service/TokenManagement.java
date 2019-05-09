@@ -5,25 +5,26 @@
  */
 package myWebSpringMVC.service;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-import javax.inject.Inject;
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import static java.time.LocalDateTime.now;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-//import org.apache.commons.codec.binary.Base64;
 import java.util.UUID;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
-import org.json.simple.JSONObject;
-import org.springframework.web.bind.annotation.RestController;
-import javax.annotation.Resource;
-import javax.ws.rs.core.MediaType;
-import javax.xml.bind.DatatypeConverter;
-import myWebSpringMVC.domain.model.UserAccount;
-import org.apache.log4j.Logger;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.json.*; 
+//import org.json.simple.JSONObject;
 
+import javax.xml.bind.DatatypeConverter;
+
+import org.apache.log4j.Logger;
+//import org.json.simple.parser.JSONParser;
+
+/*import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+*/
 /**
  *
  * @author FENG
@@ -36,25 +37,32 @@ public class TokenManagement {
 
     }
 
-    public static String generateToken(int userID, UserAccountManager uamanager) {
+    public static String generateToken(int userID, UserAccountManager uamanager) throws UnsupportedEncodingException {
 
         UUID uuid = UUID.randomUUID();
-        logger.debug(uuid);
+        logger.debug("generateToken" + uuid);
         uamanager.modifyUUID(userID, uuid.toString());
 
-        Date now = new Date();
+        /*Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.format(now);
+        logger.debug(now);
         Date dateExp = new Date(now.getTime() + 3000000);
+        sdf.format(dateExp);
+        logger.debug(dateExp);*/
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime dateExp = today.plusMonths(6);
         JSONObject obj = new JSONObject();
         obj.put("userID", userID);
         obj.put("uuid", uuid.toString());
         obj.put("dateExp", dateExp);
-
-        //Encrypte le String de l'objet en BASE64
-        //byte[] bytesEncoded = Base64.encodeBase64(obj.toString().getBytes());
-        //System.out.println("encoded value is " + new String(bytesEncoded));
-        //String token = new String(bytesEncoded);
-        String token = new String(obj.toString().getBytes());
-
+        logger.debug(dateExp);
+        logger.debug(obj.toString());
+        //String token = new BASE64Encoder().encode(obj.toString().getBytes("UTF-8"));
+        byte[] bytesEncoded = Base64.encodeBase64(obj.toString().getBytes());
+        logger.debug(obj.toString().getBytes());
+        System.out.println("encoded value is " + new String(bytesEncoded));
+        String token = new String(bytesEncoded);
         logger.debug("token" + token);
         return token;
 
@@ -62,26 +70,25 @@ public class TokenManagement {
 
     public static boolean verifyToken(String token, String UUID) throws Exception {
 
-        boolean verifie = true;
-/*
-        //Decrypte le Token
-        String decodedString = new String(DatatypeConverter.parseBase64Binary(token));
-        System.out.println("Decoded value is " + decodedString);
-        logger.info(decodedString);
+        
+        //BASE64Decoder decoder = new BASE64Decoder();
 
-        //Parse la String Décryptée //Parse nfo D'un JSSOn contenu dans une string
-        JSONObject objToken = new JSONObject(decodedString);
-        //int userIDMember = objToken.getInt("userID");
-        String UUIDMember = objToken.getString("uuid");
-        LocalDateTime expirationDate = LocalDateTime.parse(objToken.getString("dateExp"), DateTimeFormatter.ISO_DATE_TIME);
-
-        //Verification pour voir si toujours valide(ExpirationDate) et correspond à la personne qui se connecte
-        if (!UUID.equals(UUIDMember)) {//Controle UUID attribuer à userIDMember doit correspndre à celui donné dans le Token
-            throw new Exception("L'UUID du token ne correspond pas à l'UUID de l'utilisateur");
-        } else if (LocalDateTime.now().isAfter(expirationDate) || LocalDateTime.now().isEqual(expirationDate)) {   // Controle Date Expiration
-            throw new Exception("La Date d'expiration est depasse veuillez vous reconnecter");
+        //String DecodedToken = new String(decoder.decodeBuffer(token), "UTF-8");
+        String DecodedToken = new String(DatatypeConverter.parseBase64Binary(token));
+        logger.info("Decoded Token  = " + DecodedToken);
+        JSONObject obj = new JSONObject(DecodedToken);
+        //JSONObject obj = (JSONObject)(new JSONParser().parse(DecodedToken));
+        logger.debug("obj" + obj);
+        String TokenUUID = (String) obj.get("uuid");
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date dateExp = sdf.parse((String) obj.get("dateExp"));
+//        Date now = new Date();
+        LocalDateTime dateExp = LocalDateTime.parse(obj.getString("dateExp"), DateTimeFormatter.ISO_DATE_TIME);
+        if (!TokenUUID.equals(UUID) || dateExp.compareTo(LocalDateTime.now()) < 1){
+            logger.debug("Token is not match");
+            return false;
         }
-*/
-        return verifie;
+        
+        return true;
     }
 }

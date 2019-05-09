@@ -12,6 +12,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -27,6 +30,7 @@ import javax.persistence.Temporal;
 public class Store implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
     private int id;
 
@@ -35,7 +39,8 @@ public class Store implements Serializable {
 
     @OneToMany(
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch=FetchType.EAGER
     )
     private List<OpeningHr> openingHr = new ArrayList<>();
 
@@ -67,6 +72,23 @@ public class Store implements Serializable {
     @Column(name = "LastModifiedBy")
     private int lastModifiedBy;
 
+    
+    public List<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(List<Promotion> promotions) {
+        this.promotions = promotions;
+    }
+
+    public List<OpeningHr> getOpeningHr() {
+        return openingHr;
+    }
+
+    public void setOpeningHr(List<OpeningHr> openingHr) {
+        this.openingHr = openingHr;
+    }
+    
     public Address getAddress() {
         return address;
     }

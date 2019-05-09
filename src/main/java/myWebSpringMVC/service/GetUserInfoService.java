@@ -9,13 +9,17 @@ import javax.annotation.Resource;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
 import myWebSpringMVC.domain.model.UserAccount;
 import javax.inject.Inject;
+import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,13 +43,16 @@ public class GetUserInfoService {
     }
 
     @GetMapping(value = "/GetUserInfo/{id}", produces = MediaType.APPLICATION_JSON)
-    public String getUserInfo(@PathVariable("id") String id) {
+    public String getUserInfo(@PathVariable("id") int id, @RequestHeader(value = "authentificationToken") String token) throws Exception {
 
-        UserAccount ua = uamanager.getUserAccountById(Integer.parseInt(id));
-/*
-        if (!TokenManagement.verifyToken(headers.get("authentificationToken"))) {
+        UserAccount ua = uamanager.getUserAccountById(id);
+        logger.info("token is " + token);
+        
+        String UUID = ua.getUUID();
+        if (!TokenManagement.verifyToken(token, UUID)) {
             throw new NotAuthorizedException("Invalid token");
-        }*/
+        }
+        
         JSONObject obj = new JSONObject();
 
         obj.put("Id", ua.getID());

@@ -65,8 +65,6 @@ public class LoginService {
         logger.info("Login - Email:" + email + " Password:" + password);
 
         try {
-            //ObjectMapper mapper = new ObjectMapper();
-            //UserAccount user = mapper.readValue(credentials, UserAccount.class);
 
             UserAccount user = uamanager.getUserAccountByEmailPassword(email, password);
             logger.info("UserID:" + user.getID());
@@ -77,16 +75,11 @@ public class LoginService {
             } else {
                 id = user.getID();
             }
-            logger.info("ca va");
             String token = TokenManagement.generateToken(id, uamanager);
-            logger.info("token created");
-            logger.info("token : " + token);
-
-            // Return the token on the response
-            return Response.ok().header(AUTHORIZATION, "Token : " + token).build();
+ 
+            return Response.status(Response.Status.ACCEPTED).header("authentification Token", token).build();
 
         } catch (Exception e) {
-            //System.out.println(e.getMessage());
             logger.error("Exception" + e.getMessage());
             return Response.status(Response.Status.FORBIDDEN).build();
         }

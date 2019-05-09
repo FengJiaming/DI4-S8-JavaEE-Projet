@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import static javax.persistence.DiscriminatorType.STRING;
+import javax.persistence.GeneratedValue; 
+import javax.persistence.GenerationType; 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -21,6 +23,7 @@ import javax.persistence.Table;
 public class UserAccount implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
     private int id;
 
@@ -59,7 +62,7 @@ public class UserAccount implements Serializable {
     @Column(name = "IsRemoved")
     private boolean isRemoved;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE) 
     private List<Address> address = new ArrayList<>();
 
     public List<Address> getAddress() {

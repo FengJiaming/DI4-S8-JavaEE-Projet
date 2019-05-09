@@ -43,7 +43,8 @@ public class UserAccountManager {
         }
         return user;
         */
-        return this.repo.findByEmail(email);
+        return this.repo.findByEmailAndPassword(email, password);
+        //return this.repo.findByEmail(email);
         /*
         logger.info("getUserAccountByEmailPassword");
         UserAccount user = new UserAccount();

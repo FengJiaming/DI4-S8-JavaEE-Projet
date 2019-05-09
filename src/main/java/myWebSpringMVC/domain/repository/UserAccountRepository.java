@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param;
 public interface UserAccountRepository extends JpaRepository<UserAccount, Integer> {
      //String findByLastnameOrFirstname(String firstname);
      
-     UserAccount findByEmail(String email);
+     public UserAccount findByEmail(String email);
     
     //@Query("SELECT ua FROM UserAccount ua WHERE ua.email = :email AND ua.password = :password AND ua.isRemoved = 0")
     //public UserAccount findByEmail_Password(@Param("email") String email, @Param("password") String password);
@@ -20,10 +20,10 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Intege
     @Query("SELECT ua FROM UserAccounts ua WHERE ua.email = :email AND ua.password = :password")
     public List<UserAccount> findByLoginPass(@Param("email") String email, @Param("password") String password);
 
-    /*@Query("SELECT ua FROM UserAccounts ua WHERE ua.email = :email")
+    @Query("SELECT ua FROM UserAccounts ua WHERE ua.email = :email")
     public List<UserAccount> findByEmail(@Param("email") String email);
-    
-    //public List<UserAccount> findByEmailAndPassword(String email, String password);
+    */
+    public UserAccount findByEmailAndPassword(String email, String password);
     
     //@Query("SELECT ua FROM UserAccounts ua WHERE ua.email = :email AND ua.password = :password AND ua.isRemoved = 0")
     //public UserAccount findByEmail_Password(@Param("email") String email, @Param("password") String password);
@@ -32,7 +32,7 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Intege
     
     //@Query("select * from UserAccounts where LastName = ?1 or firstName = ?1")
     //UserAccount findByLastnameOrFirstName(String name); 
-    */
+    
     
 }
  

@@ -1,5 +1,6 @@
 package myWebSpringMVC.bl.concrete;
 
+import java.util.List;
 import myWebSpringMVC.domain.repository.AddressRepository;
 
 import myWebSpringMVC.domain.model.Address;
@@ -18,21 +19,24 @@ public class PromotionManager {
         this.repo = prepo;
     }
     
-    public Promotion getAddressById(int id) {
+    public Promotion getPromotionById(int id) {
         return this.repo.findById(id).get();
     }
     
-    public void setAddress(Promotion user){
-        this.repo.save(user);
+    public void setPromotion(Promotion promo){
+        this.repo.save(promo);
     }
     
     public void deletePromotionById(int id){
         this.repo.delete(this.repo.findById(id).get());
     }
-    public void updatePromotion(Promotion user){
-        this.repo.saveAndFlush(user);
+    public void updatePromotion(Promotion promo){
+        this.repo.saveAndFlush(promo);
     }
     
+    public List<Promotion> all() {
+        return this.repo.findAll();
+    }
    
     
 }

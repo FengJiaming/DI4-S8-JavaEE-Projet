@@ -5,23 +5,24 @@
  */
 package myWebSpringMVC.service;
 
-import java.io.IOException;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import myWebSpringMVC.bl.concrete.AddressManager;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
+import myWebSpringMVC.domain.model.Address;
+import myWebSpringMVC.domain.model.Client;
+import myWebSpringMVC.domain.model.Owner;
 import myWebSpringMVC.domain.model.UserAccount;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.json.simple.JSONObject;
+
 //import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -35,20 +36,32 @@ import org.json.simple.JSONObject;
 public class RegisterService {
 
     private static final Logger logger = Logger.getLogger(LoginService.class);
+
     @Inject
     UserAccountManager uamanager;
 
-    public RegisterService(UserAccountManager uamanager) {
+    @Resource
+    AddressManager amanager;
+
+    public RegisterService(UserAccountManager uamanager, AddressManager amanager) {
         this.uamanager = uamanager;
+        this.amanager = amanager;
     }
 
     @RequestMapping(value = "/Register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON)
     public String register(@QueryParam("type") String type, @QueryParam("email") String email,
             @QueryParam("firstname") String firstname, @QueryParam("lastname") String lastname, @QueryParam("password") String password,
-            @QueryParam("phonenumber") String phonenumber) throws Exception {
+            @QueryParam("phonenumber") String phonenumber, @QueryParam("city") String city, @QueryParam("country") String country,
+             @QueryParam("state") String state
+    ) throws Exception {
 
         try {
-            UserAccount user = new UserAccount();
+            UserAccount user = null;
+            if (type.equals("Owner")) {
+                user = new Owner();
+            } else if (type.equals("Client")) {
+                user = new Client();
+            }
 
             user.setFirstName(firstname);
             user.setLastName(lastname);
@@ -66,38 +79,26 @@ public class RegisterService {
             boolean isRemoved = false;
             user.setIsRemoved(isRemoved);
 
-            //Cherche si type Existe
-            /*Type typeUser = tymanager.getTypeByName(type);
-            if (typeUser == null) {
-                typeUser = new Type(type);
-                tymanager.addType(typeUser);
-            }*/
-
-            //Cherche si country Existe
-            /*
-            Country countryUser = comanager.getCountryByName(country);
-            if (countryUser == null) {
-                countryUser = new Country(country);
-                comanager.addCountry(countryUser);
-            }
-
-            //Cherche si address Existe
-            Address addressUser = new Address(address, city, state, zipCode, countryUser);
-            //admanager.AddressExiste(addressUser);//regarde si l'address existe ou pas sinon on le créé
-            admanager.addAddress(addressUser); // en attendant implémentation on considère que c'est toujours une nouvelle adresse
-            UserAccount newUser = new UserAccount(firstName, lastName, email, password, phoneNumber, active, creationDate, lastModificationDate, resetPasswordLink, resetLinkValidateDate, isRemoved, "", typeUser, addressUser);
-
-            */
-            uamanager.setUserAccount(user);
+            Address address = new Address();
             
+            address.setCity(city);
+            address.setCountry(country);
+            address.setState(state);
+            logger.info("idadress"+address.getID());
+            amanager.setAddress(address);
+               
+            List<Address> addList = new ArrayList<>();
+            addList.add(address);
 
-            //Récupérer user creer et l'afficher
+            user.setAddress(addList);
+
+            uamanager.setUserAccount(user);
+
         } catch (Exception e) {
             logger.error(e.getMessage());
-            throw new Exception("Le compte utilisateur n a pas pu etre cree");
+            throw new Exception("Register failed");
         }
 
-        //obj.toString(2)
         return "Register success";
     }
 
