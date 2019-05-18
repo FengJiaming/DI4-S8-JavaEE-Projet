@@ -19,6 +19,10 @@ import myWebSpringMVC.domain.model.Client;
 import myWebSpringMVC.domain.model.Owner;
 import myWebSpringMVC.domain.model.UserAccount;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,71 +39,83 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class RegisterService {
 
-    private static final Logger logger = Logger.getLogger(LoginService.class);
+    private static final Logger logger = Logger.getLogger(RegisterService.class);
 
-    @Inject
+    @Resource
     UserAccountManager uamanager;
 
     @Resource
     AddressManager amanager;
 
-    public RegisterService(UserAccountManager uamanager, AddressManager amanager) {
-        this.uamanager = uamanager;
-        this.amanager = amanager;
+    public RegisterService() {
+
     }
 
     @RequestMapping(value = "/Register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON)
-    public String register(@QueryParam("type") String type, @QueryParam("email") String email,
-            @QueryParam("firstname") String firstname, @QueryParam("lastname") String lastname, @QueryParam("password") String password,
-            @QueryParam("phonenumber") String phonenumber, @QueryParam("city") String city, @QueryParam("country") String country,
-             @QueryParam("state") String state
-    ) throws Exception {
-
+    public String register(@RequestBody String content) {
+        logger.info("Start register in RegisterService");
+        JSONParser parser = new JSONParser();
+        JSONObject msg = new JSONObject();
         try {
-            UserAccount user = null;
+            UserAccount ua = null;
+            JSONObject obj = (JSONObject)parser.parse(content);
+            String email = (String) obj.get("Email");
+            String password = (String) obj.get("Password");
+            String firstname = (String) obj.get("FirstName");
+            String lastname = (String) obj.get("LastName");
+            String phonenumber = (String) obj.get("PhoneNumber");
+            String city = (String) obj.get("City");
+            String country = (String) obj.get("Country");
+            String state = (String) obj.get("State");
+            String type = (String) obj.get("Type");
+            logger.info("type:" + type);
             if (type.equals("Owner")) {
-                user = new Owner();
+                ua = new Owner();
             } else if (type.equals("Client")) {
-                user = new Client();
+                ua = new Client();
             }
-
-            user.setFirstName(firstname);
-            user.setLastName(lastname);
-            user.setEmail(email);
-            user.setPassword(password);
-            user.setPhoneNumber(phonenumber);
-            user.setActive("True");
+            //logger.debug("type=",user.get)
+            ua.setFirstName(firstname);
+            ua.setLastName(lastname);
+            ua.setEmail(email);
+            ua.setPassword(password);
+            ua.setPhoneNumber(phonenumber);
+            ua.setActive("True");
 
             Date creationdate = new Date();
-            user.setCreationDate(creationdate.toString());
-            user.setLastModificationDate(creationdate.toString());
-            user.setResetLinkValidateDate("");
-            user.setResetPasswordLink("");
+            ua.setCreationDate(creationdate.toString());
+            ua.setLastModificationDate(creationdate.toString());
+            ua.setResetLinkValidateDate("");
+            ua.setResetPasswordLink("");
 
             boolean isRemoved = false;
-            user.setIsRemoved(isRemoved);
+            ua.setIsRemoved(isRemoved);
 
             Address address = new Address();
             
             address.setCity(city);
             address.setCountry(country);
             address.setState(state);
-            logger.info("idadress"+address.getID());
+            logger.info("User address is set successfully. ID: " + address.getID());
             amanager.setAddress(address);
                
             List<Address> addList = new ArrayList<>();
             addList.add(address);
 
-            user.setAddress(addList);
+            ua.setAddress(addList);
 
-            uamanager.setUserAccount(user);
+            uamanager.setUserAccount(ua);
+            logger.info("User is set successfully. ID: " + ua.getID());
 
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            throw new Exception("Register failed");
+        } catch (ParseException e) {
+            logger.error("Exception" + e.getMessage());
+            msg.put("message", "Register failed");
+            return msg.toString();
         }
-
-        return "Register success";
+        
+        msg.put("message", "Register success");
+        return msg.toString();
+        
     }
 
 }

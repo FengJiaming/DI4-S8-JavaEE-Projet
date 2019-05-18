@@ -65,7 +65,7 @@ public class DefaultController {
         uamanager.setUserAccount(ua2);
         */
 //        UserAccount ua = uamanager.getUserAccountById(2);
-        Promotion promo = new Promotion();
+        /*Promotion promo = new Promotion();
         promo.setID(1);
         promo.setImageURL("url");
         promo.setPosition("Tours");
@@ -99,7 +99,7 @@ public class DefaultController {
        // oh.setClosed(false);
         //oh.setTwentyFourH(false);
         ohmanager.setOpeningHr(oh);
-         
+         */
        // uamanager.deleteUserAccountById(1);
         
         map.put("msg", "Hello Spring 5 Web MVC!");

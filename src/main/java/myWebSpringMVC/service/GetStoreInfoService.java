@@ -68,9 +68,8 @@ public class GetStoreInfoService {
             obj.put("Country", store.getAddress().getCountry());
             
         } catch (Exception e) {
-            throw new Exception("Error in get store info");
+            logger.error("Exception" + e.getMessage());
         }
-
         return obj.toString();
     }
 

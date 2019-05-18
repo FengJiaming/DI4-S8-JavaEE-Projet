@@ -5,15 +5,11 @@
  */
 package myWebSpringMVC.service;
 
-import java.util.LinkedHashMap;
+
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ws.rs.core.MediaType;
-import myWebSpringMVC.bl.concrete.AddressManager;
-import myWebSpringMVC.bl.concrete.OpeningHrManager;
 import myWebSpringMVC.bl.concrete.PromotionManager;
-import myWebSpringMVC.bl.concrete.StoreManager;
-import myWebSpringMVC.bl.concrete.UserAccountManager;
 import myWebSpringMVC.domain.model.Promotion;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -33,11 +29,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class GetPromotionService {
 
     private static final Logger logger = Logger.getLogger(GetPromotionService.class);
+    
     @Resource
     PromotionManager pmanager;
-
+    
+    public GetPromotionService() {
+        
+    }
+    
     @GetMapping(value = "/getPromotion", produces = MediaType.APPLICATION_JSON)
-    public String getPromotionInfo() throws Exception {
+    public String getPromotionInfo(){
 
         JSONObject ObjPromotions = new JSONObject();
         JSONArray ArrayPromotions = new JSONArray();
@@ -63,8 +64,7 @@ public class GetPromotionService {
             ObjPromotions.put("promotions", ArrayPromotions);
 
         } catch (Exception e) {
-            logger.error(e.getMessage());
-            throw new Exception("Error in get promotions");
+            logger.error("Exception" + e.getMessage());
         }
         return ObjPromotions.toString();
     }

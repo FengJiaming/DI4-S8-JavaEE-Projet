@@ -5,7 +5,9 @@
  */
 package myWebSpringMVC.service;
 
+import myWebSpringMVC.helpers.TokenManagement;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import org.apache.log4j.Logger;
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -24,62 +26,67 @@ import myWebSpringMVC.bl.concrete.UserAccountManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-//import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
  * @author FENG
  */
+
 @RestController
 
 @RequestMapping("/api/LoginService")
 
 public class LoginService {
 
-    //@Inject
-    //private static final Log log = LogFactory.getLog(LoginService.class);
     private static final Logger logger = Logger.getLogger(LoginService.class);
 
     @Resource
     UserAccountManager uamanager;
 
-    public LoginService(UserAccountManager uamanager) {
-        this.uamanager = uamanager;
-    }
-
-    @GetMapping(value = "/getTestJSON", produces = MediaType.APPLICATION_JSON)
-    public String getJson() {
-
-        return "Hello Login!";
-
+    public LoginService() {
+        
     }
 
     @RequestMapping(value = "/Login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON)
-    public Response login(@QueryParam("email") String email, @QueryParam("password") String password) {
-
-        logger.info("Login - Email:" + email + " Password:" + password);
-
+    public Response login(@RequestBody String content) {
+        
+        logger.info("Start Login in LoginService");
+        JSONParser parser = new JSONParser();
+ 
         try {
-
+            JSONObject obj = (JSONObject)parser.parse(content);
+            String email = (String) obj.get("email");
+            String password = (String) obj.get("password");
+            
+            logger.info("Get the login information! Email: " + email);
+            
             UserAccount user = uamanager.getUserAccountByEmailPassword(email, password);
+            
             logger.info("UserID:" + user.getID());
             int id = 0;
+            
             if (user == null) {
-                logger.info("User is null");
+                logger.error("User is null");
                 throw new SecurityException("Email or password invalid");
             } else {
                 id = user.getID();
             }
+            
             String token = TokenManagement.generateToken(id, uamanager);
- 
+            logger.info("Token of the user " + id + ":" + token);
+            
             return Response.status(Response.Status.ACCEPTED).header("authentification Token", token).build();
 
-        } catch (Exception e) {
+        } catch (UnsupportedEncodingException | SecurityException | JSONException | ParseException e) {
             logger.error("Exception" + e.getMessage());
             return Response.status(Response.Status.FORBIDDEN).build();
         }
