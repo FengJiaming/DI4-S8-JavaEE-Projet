@@ -10,6 +10,7 @@ import myWebSpringMVC.bl.concrete.OpeningHrManager;
 import myWebSpringMVC.bl.concrete.PromotionManager;
 import myWebSpringMVC.bl.concrete.StoreManager;
 import myWebSpringMVC.domain.model.Address;
+import myWebSpringMVC.domain.model.Client;
 import myWebSpringMVC.domain.model.OpeningHr;
 import myWebSpringMVC.domain.model.Owner;
 import myWebSpringMVC.domain.model.Promotion;
@@ -42,15 +43,15 @@ public class DefaultController {
        //UserAccount ua = uamanager.getUserAccountByEmail("907286845@qq.com");
          //int uaid = ua.getID();
         //
-        /*
+        
         Address add = new Address();
-        add.setID(1);
+        //add.setID(1);
         add.setCity("Tours");
         add.setCountry("France");
-        add.setState("Indre-et-loire");
+        add.setState("Indre");
         amanager.setAddress(add);
-        add.setCity("Toulouse");
-        amanager.updateAddress(add);
+        //add.setCity("Toulouse");
+        //amanager.updateAddress(add);
         //Address add1 = new Address();
         //add1 = amanager.getAddressById(2);
         //amanager.deleteAddressById(3);
@@ -58,14 +59,21 @@ public class DefaultController {
         List<Address> addList = new ArrayList<>();
         addList.add(add);
         Owner ua2 = new Owner();
-        ua2.setID(3);
+        //ua2.setID(3);
         ua2.setActive("Etudier");
         ua2.setLastName("marie");
+        ua2.setPassword("123456");
         ua2.setAddress(addList);
         uamanager.setUserAccount(ua2);
-        */
+        
+        Client client = new Client();
+        //client.setID(4);
+        client.setEmail("1234@gmail.com");
+        client.setPassword("123456");
+        uamanager.setUserAccount(client);
+        
 //        UserAccount ua = uamanager.getUserAccountById(2);
-        /*Promotion promo = new Promotion();
+        Promotion promo = new Promotion();
         promo.setID(1);
         promo.setImageURL("url");
         promo.setPosition("Tours");
@@ -81,13 +89,6 @@ public class DefaultController {
         st1.setEmail("907286845");
         st1.setLattitude(1.1);
         st1.setLongitude(23.15);
-        st1.setPromotions(proList);
-        Address add = new Address();
-        add.setID(1);
-        add.setCity("Tours");
-        add.setCountry("France");
-        add.setState("Indre-et-loire");
-        st1.setAddress(add);
         //st1.setLastModifiedBy(ua.getID());   
         smanager.setStore(st1);
         
@@ -99,7 +100,7 @@ public class DefaultController {
        // oh.setClosed(false);
         //oh.setTwentyFourH(false);
         ohmanager.setOpeningHr(oh);
-         */
+         
        // uamanager.deleteUserAccountById(1);
         
         map.put("msg", "Hello Spring 5 Web MVC!");

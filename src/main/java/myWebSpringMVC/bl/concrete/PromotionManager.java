@@ -1,6 +1,9 @@
 package myWebSpringMVC.bl.concrete;
 
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> qingling
 import myWebSpringMVC.domain.repository.AddressRepository;
 
 import myWebSpringMVC.domain.model.Address;
@@ -34,9 +37,12 @@ public class PromotionManager {
         this.repo.saveAndFlush(promo);
     }
     
+<<<<<<< HEAD
     public List<Promotion> all() {
         return this.repo.findAll();
     }
+=======
+>>>>>>> qingling
    
     
 }

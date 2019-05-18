@@ -34,6 +34,8 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Intege
     //UserAccount findByLastnameOrFirstName(String name); 
     
     
+     UserAccount findByEmail(String email);
+
 }
  
 
