@@ -83,7 +83,7 @@ public class UserAccountManager {
     }
 
     public List<UserAccount> all() {
-        return this.repo.findAll();
+        return repo.findAll();
     }
 
 }

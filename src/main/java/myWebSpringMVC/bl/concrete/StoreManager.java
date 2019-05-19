@@ -31,8 +31,8 @@ public class StoreManager {
     public void updateStore(Store user){
         this.repo.saveAndFlush(user);
     }
+    public List<Store> all() { 
+        return this.repo.findAll(); 
+    } 
     
-    public List<Store> all() {
-        return this.repo.findAll();
-    }
 }
