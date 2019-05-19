@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
-import javax.inject.Inject;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import myWebSpringMVC.bl.concrete.AddressManager;
 import myWebSpringMVC.bl.concrete.UserAccountManager;

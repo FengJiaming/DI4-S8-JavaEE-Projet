@@ -5,21 +5,18 @@
  */
 package myWebSpringMVC.service;
 
-import java.util.logging.Level;
+import java.util.List;
 import myWebSpringMVC.helpers.TokenManagement;
 import javax.annotation.Resource;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
+import myWebSpringMVC.domain.model.Address;
 import myWebSpringMVC.domain.model.UserAccount;
-import javax.inject.Inject;
 import javax.ws.rs.NotAuthorizedException;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
-//import org.json.simple.JSONObject;
 import org.json.JSONObject;
+import org.json.simple.JSONArray;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -60,24 +57,38 @@ public class GetUserInfoService {
             logger.error(e.getMessage());
         }
         
-        JSONObject obj = new JSONObject();
+        JSONObject objUser = new JSONObject();
+        JSONArray ArrayAddress = new JSONArray();
         try {
-            obj.put("Id", ua.getID());
-            obj.put("Active", ua.getActive());
-            obj.put("CreationDate", ua.getCreationDate());
-            obj.put("Email", ua.getEmail());
-            obj.put("FirstName", ua.getFirstName());
-            obj.put("LastName", ua.getLastName());
-            obj.put("Password", ua.getPassword());
-            obj.put("isRemoved", ua.isIsRemoved());
-            obj.put("LastModificationDate", ua.getLastModificationDate());
-            obj.put("PhoneNumber", ua.getPhoneNumber());
-            obj.put("ResetPasswordLink", ua.getResetPasswordLink());
-            obj.put("ResetLinkValidateDate", ua.getResetLinkValidateDate());
+            objUser.put("Id", ua.getID());
+            objUser.put("Active", ua.getActive());
+            objUser.put("CreationDate", ua.getCreationDate());
+            objUser.put("Email", ua.getEmail());
+            objUser.put("FirstName", ua.getFirstName());
+            objUser.put("LastName", ua.getLastName());
+            objUser.put("Password", ua.getPassword());
+            objUser.put("isRemoved", ua.isIsRemoved());
+            objUser.put("LastModificationDate", ua.getLastModificationDate());
+            objUser.put("PhoneNumber", ua.getPhoneNumber());
+            objUser.put("ResetPasswordLink", ua.getResetPasswordLink());
+            objUser.put("ResetLinkValidateDate", ua.getResetLinkValidateDate());
+            
+            List<Address> ListAddress = ua.getAddress();
+            for (int i = 0; i < ListAddress.size(); i++) {
+                JSONObject obj = new JSONObject();
+                obj.put("state", ListAddress.get(i).getState());
+                obj.put("city", ListAddress.get(i).getCity());
+                obj.put("country", ListAddress.get(i).getCountry()); 
+                obj.put("street", ListAddress.get(i).getStreet()); 
+                obj.put("zipcode", ListAddress.get(i).getZipCode()); 
+                ArrayAddress.add(i,obj);
+            }
+            objUser.put("address", ArrayAddress);
+            
         } catch (JSONException e) {
             logger.error("Exception" + e.getMessage());
         }
-        return obj.toString();
+        return objUser.toString();
     }
 
 }

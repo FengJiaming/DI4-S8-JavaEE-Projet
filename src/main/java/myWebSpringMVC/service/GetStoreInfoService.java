@@ -7,13 +7,12 @@ package myWebSpringMVC.service;
 
 import java.util.List;
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 import myWebSpringMVC.bl.concrete.StoreManager;
-import myWebSpringMVC.bl.concrete.OpeningHrManager;
 import myWebSpringMVC.domain.model.OpeningHr;
 import myWebSpringMVC.domain.model.Store;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,43 +33,51 @@ public class GetStoreInfoService {
     
     @Resource
     StoreManager storemanager;
-    @Resource
-    OpeningHrManager ophrmanager;
 
-    public GetStoreInfoService(StoreManager storeManager, OpeningHrManager ophrmanager) {
-        this.storemanager = storeManager;
-        this.ophrmanager = ophrmanager;
+    public GetStoreInfoService() {
+
     }
 
     @GetMapping(value = "/getStoreInfo/{id}", produces = MediaType.APPLICATION_JSON)
-    public String getStoreInfo(@PathVariable("id") int id) throws Exception {
+    public String getStoreInfo(@PathVariable("id") int id) {
         
-        JSONObject obj = new JSONObject();
-        
+        JSONObject objStore = new JSONObject();
+        JSONArray ArrayOpeningHours = new JSONArray();
         try {
 
             Store store = storemanager.getStoreById(id);
             logger.debug("ID Store" + store.getID());
-            obj.put("key", store.getKkey());
-            obj.put("openinghours", store.getOpeningHr());
-            obj.put("name", store.getName());
-            obj.put("phonenumber", store.getPhoneNumber());
-            obj.put("email", store.getEmail());
-            obj.put("lattitude", store.getLattitude());
-            obj.put("longitude", store.getLongitude());
-            obj.put("lastmodificationdate", store.getLastModifiedDate());
-            obj.put("lastmodificationby", store.getLastModifiedBy());
+            objStore.put("key", store.getKkey());
             
-            obj.put("street", store.getAddress().getStreet());
-            obj.put("city", store.getAddress().getCity());
-            obj.put("state", store.getAddress().getState());
-            obj.put("zipcode", store.getAddress().getZipCode());
-            obj.put("Country", store.getAddress().getCountry());
+            objStore.put("name", store.getName());
+            objStore.put("phonenumber", store.getPhoneNumber());
+            objStore.put("email", store.getEmail());
+            objStore.put("lattitude", store.getLattitude());
+            objStore.put("longitude", store.getLongitude());
+            objStore.put("lastmodificationdate", store.getLastModifiedDate());
+            objStore.put("lastmodificationby", store.getLastModifiedBy());
+            
+            objStore.put("street", store.getAddress().getStreet());
+            objStore.put("city", store.getAddress().getCity());
+            objStore.put("state", store.getAddress().getState());
+            objStore.put("zipcode", store.getAddress().getZipCode());
+            objStore.put("country", store.getAddress().getCountry());
+            
+            List<OpeningHr> storeOpeningHr = store.getOpeningHr();
+            for (int i = 0; i < storeOpeningHr.size(); i++) {
+                JSONObject obj = new JSONObject();
+                obj.put("weekday", storeOpeningHr.get(i).getWeeking());
+                obj.put("starttime", storeOpeningHr.get(i).getStartTime());
+                obj.put("endtime", storeOpeningHr.get(i).getEndTime()); 
+                
+                ArrayOpeningHours.add(i,obj);
+            }
+            objStore.put("openinghour", ArrayOpeningHours);
             
         } catch (Exception e) {
             logger.error("Exception" + e.getMessage());
         }
-        return obj.toString();
+        return objStore.toString();
     }
 
 }

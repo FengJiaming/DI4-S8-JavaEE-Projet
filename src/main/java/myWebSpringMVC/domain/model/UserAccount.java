@@ -10,6 +10,7 @@ import static javax.persistence.DiscriminatorType.STRING;
 import javax.persistence.GeneratedValue; 
 import javax.persistence.GenerationType; 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -64,7 +65,7 @@ public class UserAccount implements Serializable {
     @Column(name = "IsRemoved")
     private boolean isRemoved;
 
-    @OneToMany(cascade = CascadeType.MERGE) 
+    @OneToMany(cascade = CascadeType.MERGE, fetch=FetchType.EAGER) 
     private List<Address> address = new ArrayList<>();
 
     public List<Address> getAddress() {

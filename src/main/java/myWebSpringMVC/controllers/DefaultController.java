@@ -43,7 +43,7 @@ public class DefaultController {
        //UserAccount ua = uamanager.getUserAccountByEmail("907286845@qq.com");
          //int uaid = ua.getID();
         //
-        
+        /*
         Address add = new Address();
         //add.setID(1);
         add.setCity("Tours");
@@ -100,7 +100,7 @@ public class DefaultController {
        // oh.setClosed(false);
         //oh.setTwentyFourH(false);
         ohmanager.setOpeningHr(oh);
-         
+         */
        // uamanager.deleteUserAccountById(1);
         
         map.put("msg", "Hello Spring 5 Web MVC!");

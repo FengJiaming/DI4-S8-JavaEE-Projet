@@ -1,12 +1,7 @@
 package myWebSpringMVC.bl.concrete;
 
-<<<<<<< HEAD
-import java.util.List;
-=======
->>>>>>> qingling
-import myWebSpringMVC.domain.repository.AddressRepository;
 
-import myWebSpringMVC.domain.model.Address;
+import java.util.List;
 import myWebSpringMVC.domain.model.Promotion;
 import myWebSpringMVC.domain.repository.PromotionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +31,9 @@ public class PromotionManager {
     public void updatePromotion(Promotion promo){
         this.repo.saveAndFlush(promo);
     }
-    
-<<<<<<< HEAD
+
     public List<Promotion> all() {
         return this.repo.findAll();
     }
-=======
->>>>>>> qingling
-   
     
 }

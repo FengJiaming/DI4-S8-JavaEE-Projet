@@ -6,31 +6,17 @@
 package myWebSpringMVC.service;
 
 import myWebSpringMVC.helpers.TokenManagement;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import org.apache.log4j.Logger;
 import javax.annotation.Resource;
-import javax.inject.Inject;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import myWebSpringMVC.domain.model.UserAccount;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author FENG
  */
-
 @RestController
 
 @RequestMapping("/api/LoginService")
