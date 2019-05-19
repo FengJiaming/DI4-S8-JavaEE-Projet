@@ -87,8 +87,20 @@ public class UserAccountManager {
 
     //TO DO get all UserAccount
     public List<UserAccount> all() {
-        return this.repo.findAll();
+        return repo.findAll();
     }
+    
+     public boolean verifierEmailExist(String email){ 
+        int nbUser = repo.findAll().size(); 
+         
+        for(int i=0; i < nbUser ; i++){ 
+             
+            if(email.equals(repo.findAll().get(i).getEmail())){ 
+                return true; 
+            } 
+        }   
+        return false; 
+    } 
     
     // public UserAccount getUserInfo
     //public UserAccount supprimer()

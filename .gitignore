@@ -6,3 +6,5 @@ src/main/java/myWebSpringMVC/\.DS_Store
 \.DS_Store
 
 *.lst
+
+*.log

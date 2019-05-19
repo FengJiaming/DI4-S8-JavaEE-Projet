@@ -56,16 +56,16 @@ public class DefaultController {
                       
             
             
-            String name = request.getParameter("name");
+            String email = request.getParameter("email");
             String password = request.getParameter("password");
             
             Logger logger = Logger.getLogger("User");
-            logger.log(Level.FINE,name );
+            logger.log(Level.FINE,email );
             logger.log(Level.FINE,password);
             
-            if(uamanager.verifierLogin(name, password)){
+            if(uamanager.verifierEmailExist(email) && uamanager.verifierLogin(email, password)){
                 HttpSession session = request.getSession();
-                session.setAttribute("name", name);
+                session.setAttribute("name", email);
                 request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
                 out.print("<div classe="+"container"+">");
                 
@@ -73,7 +73,7 @@ public class DefaultController {
             }else{
                 request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
                 out.print("<div classe="+"container"+">");
-                request.setAttribute("name", name);
+                request.setAttribute("name", email);
                 request.getRequestDispatcher("/WEB-INF/JSP/login.jsp").include(request, response);
                 
                 
@@ -194,6 +194,9 @@ public class DefaultController {
                    
             out.print("</ul>");
             out.print("</div>");
+            out.println("<form class=\"form-signin\" action=\"add_store\" method=\"post\">");
+            out.println("<input type=\"submit\" value=\"register\" class=\"btn btn-lg btn-dark btn-block text-uppercase\">");
+            out.println("</form>");
             out.print("</div>");
             
            
