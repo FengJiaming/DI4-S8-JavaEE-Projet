@@ -10,7 +10,7 @@
         <input type="text" id="State" class="form-control" placeholder="State"  autofocus name="State">
         <input type="text" id="name" class="form-control" placeholder="ZipCode"  autofocus name="ZipCode">
         <input type="text" id="Country" class="form-control" placeholder="Country"  autofocus name="Country">
-        <input type="text" id="Password" class="form-control" placeholder="Password" required autofocus name="Password">
+        <input type="password" id="Password" class="form-control" placeholder="Password" required autofocus name="Password">
         <input type="email" id="email" class="form-control" placeholder="email" required autofocus name="email">
 
         <input type="submit" value="register" class="btn btn-lg btn-dark btn-block text-uppercase">  

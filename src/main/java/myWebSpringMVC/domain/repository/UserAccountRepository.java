@@ -10,7 +10,7 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Intege
     
      UserAccount findByEmail(String email);
      List<UserAccount> findAll();
-     boolean verifierEmailExist(String email);
+     //boolean verifierEmailExist(String email);
 
 }
  

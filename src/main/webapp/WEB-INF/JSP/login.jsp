@@ -1,7 +1,8 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<div class="row">
+<div class="container">
+    <div class="row">
       <div class=" mx-auto">
             <div class="card-body">
                 <h5 class="card-title text-center">Sign In</h5>
@@ -23,4 +24,5 @@
                 <c:if test="${ !empty name }"><p class="alert alert-danger"><c:out value="login or password doesn't exist" /></p></c:if>
             </div>
       </div>
+</div>
 </div>
