@@ -6,122 +6,157 @@
 package myWebSpringMVC.domain.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author mengqingling
- */ 
+ */
 @Entity
-@Table(name = "Stores")
-public class Store  implements Serializable {
+@Table(name = "Store")
+public class Store implements Serializable {
 
-    public List<Address> getAddress() {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "ID")
+    private int id;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch=FetchType.EAGER
+    )
+    private List<OpeningHr> openingHr = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
+    @Column(name = "Name")
+    private String name;
+
+    @Column(name = "Kkey")
+    private String kkey;
+
+    @Column(name = "PhoneNumber")
+    private String phoneNumber;
+
+    @Column(name = "Email")
+    private String email;
+
+    @Column(name = "Lattitude")
+    private double lattitude;
+
+    @Column(name = "Longitude")
+    private double longitude;
+
+    @Column(name = "LastModifiedDate")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date lastModifiedDate;
+
+    @Column(name = "LastModifiedBy")
+    private int lastModifiedBy;
+
+  
+
+    public List<OpeningHr> getOpeningHr() {
+        return openingHr;
+    }
+
+    public void setOpeningHr(List<OpeningHr> openingHr) {
+        this.openingHr = openingHr;
+    }
+    
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(List<Address> address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
-    
-    @Id
-    @Column(name = "ID")
-    private int ID;
-    
-    @Column(name = "Name")
-    private String Name;
-    
-    @Column(name = "Key")
-    private String Key;  
-    
-    @Column(name = "PhoneNumber")
-    private String PhoneNumber;
-        
-    @Column(name = "Email")
-    private String Email;
-            
-    @Column(name = "Lattitude")
-    private double Lattitude;
-    
-    @Column(name = "Longitude")
-    private double Longitude;   
-    
-    @OneToMany(
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
-    private List<Address> address;
-    
-    
-   // @Column( name = "Address")
-    
-   // @OneToOne
-    //private Address Address;
-    
-    public int getID() {
-        return ID;
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setLastModifiedDate(Date LastModifiedDate) {
+        this.lastModifiedDate = LastModifiedDate;
+    }
+
+    public int getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(int LastModifiedBy) {
+        this.lastModifiedBy = LastModifiedBy;
+    }
+
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
-    }
-
-    public String getKey() {
-        return Key;
-    }
-
-    public void setKey(String Key) {
-        this.Key = Key;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
-    public void setPhoneNumber(String PhoneNumber) {
-        this.PhoneNumber = PhoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public double getLattitude() {
-        return Lattitude;
+        return lattitude;
     }
 
-    public void setLattitude(double Lattitude) {
-        this.Lattitude = Lattitude;
+    public void setLattitude(double lattitude) {
+        this.lattitude = lattitude;
     }
 
     public double getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
-    public void setLongitude(double Longitude) {
-        this.Longitude = Longitude;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+    
+    public String getKkey() {
+        return kkey;
     }
 
-    
-    
-    
+    public void setKkey(String kkey) {
+        this.kkey = kkey;
+    }
+
 }

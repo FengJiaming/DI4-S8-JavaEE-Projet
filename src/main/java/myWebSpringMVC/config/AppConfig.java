@@ -22,7 +22,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
-@ComponentScan({"myWebSpringMVC.controllers", "myWebSpringMVC.bl.concrete"})
+@ComponentScan({"myWebSpringMVC.controllers", "myWebSpringMVC.bl.concrete", "myWebSpringMVC.service"})
 @EnableWebMvc
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")

@@ -8,6 +8,8 @@ package myWebSpringMVC.domain.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,77 +21,71 @@ import javax.persistence.Table;
 @Table(name = "Address")
 public class Address  implements Serializable{
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
-    private int ID;
+    private int id;
     
     @Column(name = "Street")
-    private String Street;
+    private String street;
 
     @Column(name = "City")
-    private String City;
+    private String city;
 
     @Column(name = "State")
-    private String State;
+    private String state;
 
     @Column(name = "ZipCode")
-    private String ZipCode;
+    private String zipCode;
 
     @Column(name = "Country")
-    private String Country;
+    private String country;
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getStreet() {
-        return Street;
+        return street;
     }
 
-    public void setStreet(String Street) {
-        this.Street = Street;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
-    public void setCity(String City) {
-        this.City = City;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getState() {
-        return State;
+        return state;
     }
 
-    public void setState(String State) {
-        this.State = State;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getZipCode() {
-        return ZipCode;
+        return zipCode;
     }
 
-    public void setZipCode(String ZipCode) {
-        this.ZipCode = ZipCode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getCountry() {
-        return Country;
+        return country;
     }
 
-    public void setCountry(String Country) {
-        this.Country = Country;
+    public void setCountry(String country) {
+        this.country = country;
     }
-    
-    
-
-  
-
-    
-    
-    
+       
 }

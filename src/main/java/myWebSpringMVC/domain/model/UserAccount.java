@@ -7,359 +7,182 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import static javax.persistence.DiscriminatorType.STRING;
+import javax.persistence.GeneratedValue; 
+import javax.persistence.GenerationType; 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "UserAccounts")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Type", discriminatorType = STRING, length=50)
-//@DiscriminatorValue("1")
+@DiscriminatorColumn(name = "Type", discriminatorType = STRING, length = 50)
 public class UserAccount implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
-    private int ID;
+    private int id;
 
+    @Column(name = "UUID")
+    private String uuid;
+    
     @Column(name = "FirstName")
-    private String FirstName;
+    private String firstName;
 
     @Column(name = "LastName")
-    private String LastName;
+    private String lastName;
 
     @Column(name = "Email")
-    private String Email;
+    private String email;
 
     @Column(name = "Password")
-    private String Password;
+    private String password;
 
     @Column(name = "PhoneNumber")
-    private String PhoneNumber;
+    private String phoneNumber;
 
     @Column(name = "Active")
-    private String Active;
+    private String active;
 
     @Column(name = "CreationDate")
-    private String CreationDate;
+    private String creationDate;
 
     @Column(name = "LastModificationDate")
-    private String LastModificationDate;
+    private String lastModificationDate;
 
     @Column(name = "ResetPasswordLink")
-    private String ResetPasswordLink;
+    private String resetPasswordLink;
 
     @Column(name = "ResetLinkValidateDate")
-    private String ResetLinkValidateDate;
+    private String resetLinkValidateDate;
     @Column(name = "IsRemoved")
-    private boolean IsRemoved;
-    
-    //@Column(name = "Address")
-        @OneToMany(
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
-    private List<Address> address;
-  //  private Address Address;
+    private boolean isRemoved;
+
+    @OneToMany(cascade = CascadeType.MERGE, fetch=FetchType.EAGER) 
+    private List<Address> address = new ArrayList<>();
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
 
     public UserAccount() {
         this.address = new ArrayList<>();
     }
 
-/*
-    @Column(name = "Street")
-    private String Street;
-
-    @Column(name = "City")
-    private String City;
-
-    @Column(name = "State")
-    private String State;
-
-    @Column(name = "ZipCode")
-    private String ZipCode;
-
-    @Column(name = "Country")
-    private String Country;
-
-   // @Column(name = "Type")
-    //private String Type;
-    */
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
+    public String getUUID() {
+        return uuid;
+    }
+    
+    public void setUUID(String uuid) {
+        this.uuid = uuid;
+    }
+    
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
-    public void setPhoneNumber(String PhoneNumber) {
-        this.PhoneNumber = PhoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getActive() {
-        return Active;
+        return active;
     }
 
-    public void setActive(String Active) {
-        this.Active = Active;
+    public void setActive(String active) {
+        this.active = active;
     }
 
     public String getCreationDate() {
-        return CreationDate;
+        return creationDate;
     }
 
-    public void setCreationDate(String CreationDate) {
-        this.CreationDate = CreationDate;
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getLastModificationDate() {
-        return LastModificationDate;
+        return lastModificationDate;
     }
 
-    public void setLastModificationDate(String LastModificationDate) {
-        this.LastModificationDate = LastModificationDate;
+    public void setLastModificationDate(String lastModificationDate) {
+        this.lastModificationDate = lastModificationDate;
     }
 
     public String getResetPasswordLink() {
-        return ResetPasswordLink;
+        return resetPasswordLink;
     }
 
-    public void setResetPasswordLink(String ResetPasswordLink) {
-        this.ResetPasswordLink = ResetPasswordLink;
+    public void setResetPasswordLink(String resetPasswordLink) {
+        this.resetPasswordLink = resetPasswordLink;
     }
 
     public String getResetLinkValidateDate() {
-        return ResetLinkValidateDate;
+        return resetLinkValidateDate;
     }
 
-    public void setResetLinkValidateDate(String ResetLinkValidateDate) {
-        this.ResetLinkValidateDate = ResetLinkValidateDate;
+    public void setResetLinkValidateDate(String resetLinkValidateDate) {
+        this.resetLinkValidateDate = resetLinkValidateDate;
     }
 
     public boolean isIsRemoved() {
-        return IsRemoved;
+        return isRemoved;
     }
 
-    public void setIsRemoved(boolean IsRemoved) {
-        this.IsRemoved = IsRemoved;
+    public void setIsRemoved(boolean isRemoved) {
+        this.isRemoved = isRemoved;
     }
-/*
-    public String getStreet() {
-        return Street;
-    }
-
-    public void setStreet(String Street) {
-        this.Street = Street;
-    }
-
-    public String getCity() {
-        return City;
-    }
-
-    public void setCity(String City) {
-        this.City = City;
-    }
-
-    public String getState() {
-        return State;
-    }
-
-    public void setState(String State) {
-        this.State = State;
-    }
-
-    public String getZipCode() {
-        return ZipCode;
-    }
-
-    public void setZipCode(String ZipCode) {
-        this.ZipCode = ZipCode;
-    }
-
-    public String getCountry() {
-        return Country;
-    }
-
-    public void setCountry(String Country) {
-        this.Country = Country;
-    }
-*/
-//    public String getType() {
-//        return Type;
-//    }
-//
-//    public void setType(String Type) {
-//        this.Type = Type;
-//    }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
 
-
-//    @Column(name = "DISCOUNT_CODE")
-//    private String DiscountCode;
-//    
-//    @Column(name = "ZIP")
-//    private String Zip;
-//    
-//    @Column(name = "NAME")
-//    private String Name;
-////    
-//    @Column(name = "ADDRESSLINE1")
-//    private String AddressLine1;
-//    
-//    @Column(name = "ADDRESSLINE2")
-//    private String AddressLine2;
-//    
-//    @Column(name = "CITY")
-//    private String City;
-//    
-//    @Column(name = "STATE")
-//    private String State;
-//    
-//    @Column(name = "PHONE")
-//    private String Phone;
-//    
-//    @Column(name = "FAX")
-//    private String Fax;
-//    
-//
-//    
-//    @Column(name = "CREDIT_LIMIT")
-//    private String CreditLimit;
-//
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-//    public String getDiscountCode() {
-//        return DiscountCode;
-//    }
-//
-//    public void setDiscountCode(String DiscountCode) {
-//        this.DiscountCode = DiscountCode;
-//    }
-//
-//    public String getZip() {
-//        return Zip;
-//    }
-//
-//    public void setZip(String Zip) {
-//        this.Zip = Zip;
-//    }
-//
-//    public String getName() {
-//        return Name;
-//    }
-//
-//    public void setName(String Name) {
-//        this.Name = Name;
-//    }
-//
-//    public String getAddressLine1() {
-//        return AddressLine1;
-//    }
-//
-//    public void setAddressLine1(String AddressLine1) {
-//        this.AddressLine1 = AddressLine1;
-//    }
-//
-//    public String getAddressLine2() {
-//        return AddressLine2;
-//    }
-//
-//    public void setAddressLine2(String AddressLine2) {
-//        this.AddressLine2 = AddressLine2;
-//    }
-//
-//    public String getCity() {
-//        return City;
-//    }
-//
-//    public void setCity(String City) {
-//        this.City = City;
-//    }
-//
-//    public String getState() {
-//        return State;
-//    }
-//
-//    public void setState(String State) {
-//        this.State = State;
-//    }
-//
-//    public String getPhone() {
-//        return Phone;
-//    }
-//
-//    public void setPhone(String Phone) {
-//        this.Phone = Phone;
-//    }
-//
-//    public String getFax() {
-//        return Fax;
-//    }
-//
-//    public void setFax(String Fax) {
-//        this.Fax = Fax;
-//    }
-//
-//    public String getEmail() {
-//        return Email;
-//    }
-//
-//    public void setEmail(String Email) {
-//        this.Email = Email;
-//    }
-//
-//    public String getCreditLimit() {
-//        return CreditLimit;
-//    }
-//
-//    public void setCreditLimit(String CreditLimit) {
-//        this.CreditLimit = CreditLimit;
-//    }
 }
