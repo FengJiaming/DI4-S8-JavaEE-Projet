@@ -1,7 +1,5 @@
-/target/
-*.class
 
-src/main/java/myWebSpringMVC/\.DS_Store
+target/
 
 \.DS_Store
 

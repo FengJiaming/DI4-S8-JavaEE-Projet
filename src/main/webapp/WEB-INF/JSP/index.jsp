@@ -8,14 +8,37 @@
         <link rel="stylesheet" type="text/css" href="${cp}/resources/css/site.css" /> 
         <script src="${cp}/resources/js/js.js"></script> 
     </head> 
-    <body> 
+     
+        
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Home page</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Register</a></li>
+                        <li><a href="#">Login</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        
         <h1>${cp}</h1> 
         <h4>Spring 5 Web MVC via Annotations</h4> 
         Spring says: <span class="blue">${msg}</span> 
         User id: <span class="blue">${userId}</span> 
         User name: <span class="blue">${userName}</span> 
+        City: <span class="blue">${cCIty}</span>
         <br /> 
         <br /> 
         <a href="javascript:void(0)" onclick="test()">Click to test JS</a> 
-    </body> 
+        <br/>
+        <a href="javascript:void(0)" onclick="register()">Register</a>
+        <br/>
+        <a href="javascript:void(0)" onclick="login()">Login</a>
+        <br />
+     
 </html>

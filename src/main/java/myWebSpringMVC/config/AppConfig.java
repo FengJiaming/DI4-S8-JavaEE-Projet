@@ -22,7 +22,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
-@ComponentScan({"myWebSpringMVC.controllers", "myWebSpringMVC.bl.concrete"})
+@ComponentScan({"myWebSpringMVC.controllers", "myWebSpringMVC.bl.concrete", "myWebSpringMVC.service"})
 @EnableWebMvc
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
@@ -94,7 +94,6 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
     }
 
 }

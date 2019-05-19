@@ -3,6 +3,7 @@ package myWebSpringMVC.bl.concrete;
 import java.util.List;
 import myWebSpringMVC.domain.repository.StoreRepository;
 import myWebSpringMVC.domain.model.Store;
+import myWebSpringMVC.domain.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

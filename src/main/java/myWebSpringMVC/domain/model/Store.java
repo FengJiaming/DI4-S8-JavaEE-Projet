@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,12 +34,10 @@ public class Store implements Serializable {
     @Column(name = "ID")
     private int id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Promotion> promotions = new ArrayList<>();
-
     @OneToMany(
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch=FetchType.EAGER
     )
     private List<OpeningHr> openingHr = new ArrayList<>();
 
@@ -70,14 +69,7 @@ public class Store implements Serializable {
     @Column(name = "LastModifiedBy")
     private int lastModifiedBy;
 
-    
-    public List<Promotion> getPromotions() {
-        return promotions;
-    }
-
-    public void setPromotions(List<Promotion> promotions) {
-        this.promotions = promotions;
-    }
+  
 
     public List<OpeningHr> getOpeningHr() {
         return openingHr;

@@ -7,7 +7,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import static javax.persistence.DiscriminatorType.STRING;
+import javax.persistence.GeneratedValue; 
+import javax.persistence.GenerationType; 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +30,9 @@ public class UserAccount implements Serializable {
     @Column(name = "ID")
     private int id;
 
+    @Column(name = "UUID")
+    private String uuid;
+    
     @Column(name = "FirstName")
     private String firstName;
 
@@ -59,7 +65,7 @@ public class UserAccount implements Serializable {
     @Column(name = "IsRemoved")
     private boolean isRemoved;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE, fetch=FetchType.EAGER) 
     private List<Address> address = new ArrayList<>();
 
     public List<Address> getAddress() {
@@ -82,6 +88,14 @@ public class UserAccount implements Serializable {
         this.id = id;
     }
 
+    public String getUUID() {
+        return uuid;
+    }
+    
+    public void setUUID(String uuid) {
+        this.uuid = uuid;
+    }
+    
     public String getLastName() {
         return lastName;
     }
@@ -169,5 +183,6 @@ public class UserAccount implements Serializable {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
 
 }

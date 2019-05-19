@@ -1,4 +1,3 @@
-
 package myWebSpringMVC.domain.repository;
 
 import java.util.List;
@@ -7,16 +6,9 @@ import myWebSpringMVC.domain.model.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserAccountRepository extends JpaRepository<UserAccount, Integer> {
-    
-     UserAccount findByEmail(String email);
-     List<UserAccount> findAll();
-     //boolean verifierEmailExist(String email);
+
+    public UserAccount findByEmail(String email);
+
+    public UserAccount findByEmailAndPassword(String email, String password);
 
 }
- 
-
-
-
-
-
-

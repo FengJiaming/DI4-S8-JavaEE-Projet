@@ -8,26 +8,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import myWebSpringMVC.bl.concrete.UserAccountManager;
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import myWebSpringMVC.bl.concrete.AddressManager;
 import myWebSpringMVC.bl.concrete.OpeningHrManager;
 import myWebSpringMVC.bl.concrete.PromotionManager;
 import myWebSpringMVC.bl.concrete.StoreManager;
 import myWebSpringMVC.domain.model.Address;
 import myWebSpringMVC.domain.model.Client;
+import myWebSpringMVC.domain.model.OpeningHr;
 import myWebSpringMVC.domain.model.Owner;
 import myWebSpringMVC.domain.model.Store;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-
 public class DefaultController {
 
     @Resource
@@ -41,7 +36,7 @@ public class DefaultController {
     @Resource
     AddressManager amanager;   
     
-    @GetMapping(value = "/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     //@Transactional
     public String index(ModelMap map) {
         
@@ -96,9 +91,8 @@ public class DefaultController {
         map.put("msg", "Hello Spring 5 Web MVC!");
         map.put("userId",  1);//ua.getID());
         map.put("userName", "test");//ua.getFirstName());
-        // map.put("cCIty", ua.getAddress().getCity());
-*/
-        
+        //map.put("cCIty", ua.getAddress().getCity());
+        //map.put("ID",ua.getID());
+        return "index";
     }
-
 }
