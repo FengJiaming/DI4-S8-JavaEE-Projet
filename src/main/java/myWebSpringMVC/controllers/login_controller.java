@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class login_controller {
+    
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(login_controller.class);
     @Resource
     UserAccountManager uamanager;
     
@@ -41,15 +43,17 @@ public class login_controller {
             logger.log(Level.FINE,email );
             logger.log(Level.FINE,password);
             
-            if(uamanager.verifierEmailExist(email) && uamanager.verifierLogin(email, password)){
-                HttpSession session = request.getSession();
+            if(uamanager.verifierLogin(email, password)){
+                HttpSession session = request.getSession(); 
                 session.setAttribute("name", email);
-                request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
+                //admin save type account;
+                //session.setAttribute("type", Compte);
+                request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
                 out.print("<div classe="+"container"+">");
                 
                 
             }else{
-                request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response); 
+                request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
                 out.print("<div classe="+"container"+">");
                 request.setAttribute("name", email);
                 request.getRequestDispatcher("/WEB-INF/JSP/login.jsp").include(request, response);

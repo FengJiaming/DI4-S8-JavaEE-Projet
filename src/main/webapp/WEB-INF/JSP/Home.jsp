@@ -9,9 +9,8 @@
         <link rel="stylesheet" type="text/css" href="${cp}/resources/css/site.css" /> 
         <script src="${cp}/resources/js/js.js"></script> 
         
-        <link rel='stylesheet' type="text/css" href='${cp}/webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -35,7 +34,7 @@
                     
              </li>
              <li class="nav-item ">
-                    <a class="nav-link " ><c:out value="<%=request.getSession().getAttribute("name")%>" /></a>
+                    <a class="nav-link " href="<%=request.getContextPath()+"/info"%>"><c:out value="<%=request.getSession().getAttribute("name")%>" /></a>
                     
              </li>
              <c:if test="${sessionScope.name != null}">

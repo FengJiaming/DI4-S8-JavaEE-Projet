@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class Store_Controller {
+    
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Store_Controller.class);
     @Resource
     StoreManager smanager; 
     
@@ -33,7 +35,7 @@ public class Store_Controller {
        
         try (PrintWriter out = response.getWriter()) {      
             request.getRequestDispatcher("/WEB-INF/JSP/Home.jsp").include(request, response);
-            out.print("<div classe=\"container\" >");
+            out.print("<div classe=\"container\" style=\"margin-top: 50px;\">");
             out.print("<div classe=\"row\">");
             List<Store> stores = smanager.all();
             out.print("<ul class=\"list-group col\">");

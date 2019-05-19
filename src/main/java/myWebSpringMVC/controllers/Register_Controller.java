@@ -27,7 +27,9 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class Register_Controller {
-        @Resource
+    
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Register_Controller.class);
+    @Resource
     UserAccountManager uamanager;
     @GetMapping(value = "/register")
     public void get_register(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
